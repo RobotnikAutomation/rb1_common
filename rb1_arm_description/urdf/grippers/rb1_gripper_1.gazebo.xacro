@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<robot>
+
+  <gazebo reference="base_link_gripper">
+    <material>Gazebo/Grey</material>
+  </gazebo>
+
+  <gazebo reference="link_finger1">
+    <material>Gazebo/Black</material>
+  </gazebo>
+
+  <gazebo reference="link_finger2">
+    <material>Gazebo/Black</material>
+  </gazebo>
+
+
+</robot>

@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<robot name="rb1_arm" xmlns:xacro="http://www.ros.org/wiki/xacro"> 
+
+	<!-- Used for fixing robot to Gazebo 'base_link' -->
+	<link name="world"/>
+	<joint name="fwf" type="fixed">
+		<parent link="world"/>
+		<child link="base_link_rb1_arm"/>
+	</joint>
+
+	<!-- ***************** -->
+	<!-- Imported elements -->
+	<!-- ***************** -->
+	
+	<!-- First we import all posible elements defined in the urdf.xacro files. All these elements are defined as macro:xacros -->
+
+	<!-- Import RB1 arm elements -->
+	<xacro:include filename="$(find rb1_arm_description)/urdf/arms/rb1_arm_7dof.urdf.xacro" />
+	
+	<xacro:include filename="$(find rb1_arm_description)/urdf/grippers/rb1_gripper_1.urdf.xacro" />
+
+	<!-- Joint elements -->
+	<joint
+	  name="gripper_joint"
+      type="fixed">
+		<origin
+		  xyz="0.055 0.0 0.0"
+		  rpy="0.0 0.0 0.0" />
+		<parent link="end_effector_rb1_arm" />
+		<child link="base_link_gripper" />
+		<axis xyz="1 0 0" />
+	</joint>
+
+
+	<!-- Import all available sensors -->
+	<!-- xacro:include filename="$(find rb1_arm_description)/urdf/sensors/all_sensors.urdf.xacro" / -->
+	
+	<!-- ***************** -->
+	<!-- Global parameters -->
+	<!-- ***************** -->  
+	<xacro:property name="PI" value="3.1415926535897931"/>
+  	
+	<!-- Flag to select the high or low quality model -->
+	<xacro:property name="hq" value="true" />
+
+	<!-- RB-1 arm -->
+	<xacro:rb1_arm_7dof name="rb1_arm_7dof" hq="${hq}" />
+
+	<!-- Gazebo ros control plugins -->
+	<xacro:ros_control/>
+
+</robot>
