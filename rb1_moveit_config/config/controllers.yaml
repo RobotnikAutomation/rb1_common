@@ -1,0 +1,18 @@
+controller_list:
+  - name: /rt_traj_exe
+    action_ns: follow_joint_trajectory
+    type: FollowJointTrajectory
+    default: true
+    joints:
+      - j1_torso
+      - j1
+      - j2
+      - j3
+      - j4
+      - j5
+      - j6
+      - j7
+      - j1_head
+      - j2_head
+
+
