@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <robot name="rb1_arm_7dof" xmlns:xacro="http://www.ros.org/wiki/xacro"> 
 
-	<xacro:include filename="$(find rb1_arm_description)/urdf/arms/rb1_arm_7dof.gazebo.xacro" />
+	<!-- xacro:include filename="$(find rb1_arm_description)/urdf/arms/rb1_arm_7dof.gazebo.xacro" / -->
 
 	<xacro:property name="j1_mechanical_reduction" value="502.0"/>
 	<xacro:property name="j1_motor_torque_constant" value="50.0"/>
@@ -238,9 +238,11 @@
     
     <transmission name="j1_trans">
 	 <type>transmission_interface/SimpleTransmission</type>
-     <joint name="j1" />
+	 <joint name="j1">
+         <hardwareInterface>EffortJointInterface</hardwareInterface>
+     </joint>     
      <actuator name="j1_motor">
-	    <hardwareInterface>EffortJointInterface</hardwareInterface>
+	    <!-- hardwareInterface>EffortJointInterface</hardwareInterface -->
         <mechanicalReduction>${j1_mechanical_reduction}</mechanicalReduction>
 		<motorTorqueConstant>${j1_motor_torque_constant}</motorTorqueConstant>
 	 </actuator>	 
@@ -340,9 +342,10 @@
     
     <transmission name="j2_trans">
 	 <type>transmission_interface/SimpleTransmission</type>
-     <joint name="j2" />
-     <actuator name="j2_motor">
-	    <hardwareInterface>EffortJointInterface</hardwareInterface>
+     <joint name="j2">
+		 <hardwareInterface>EffortJointInterface</hardwareInterface>
+     </joint>
+     <actuator name="j2_motor">   
         <mechanicalReduction>${j2_mechanical_reduction}</mechanicalReduction>
 		<motorTorqueConstant>${j2_motor_torque_constant}</motorTorqueConstant>
 	 </actuator>	 
@@ -439,9 +442,10 @@
     
     <transmission name="j3_trans">
 	 <type>transmission_interface/SimpleTransmission</type>
-     <joint name="j3" />
-     <actuator name="j3_motor">
-	    <hardwareInterface>EffortJointInterface</hardwareInterface>
+     <joint name="j3">
+		<hardwareInterface>EffortJointInterface</hardwareInterface>
+	 </joint>	 
+     <actuator name="j3_motor">	    
         <mechanicalReduction>${j3_mechanical_reduction}</mechanicalReduction>
 		<motorTorqueConstant>${j3_motor_torque_constant}</motorTorqueConstant>
 	 </actuator>	 
@@ -540,9 +544,10 @@
     
     <transmission name="j4_trans">
 	 <type>transmission_interface/SimpleTransmission</type>
-     <joint name="j4" />
+     <joint name="j4">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+     </joint>
      <actuator name="j4_motor">
-	    <hardwareInterface>EffortJointInterface</hardwareInterface>
         <mechanicalReduction>${j4_mechanical_reduction}</mechanicalReduction>
 		<motorTorqueConstant>${j4_motor_torque_constant}</motorTorqueConstant>
 	 </actuator>	 
@@ -639,9 +644,10 @@
     
     <transmission name="j5_trans">
 	 <type>transmission_interface/SimpleTransmission</type>
-     <joint name="j5" />
-     <actuator name="j5_motor">
-	    <hardwareInterface>EffortJointInterface</hardwareInterface>
+     <joint name="j5">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+     </joint>
+     <actuator name="j5_motor">	    
         <mechanicalReduction>${j5_mechanical_reduction}</mechanicalReduction>
 		<motorTorqueConstant>${j5_motor_torque_constant}</motorTorqueConstant>
 	 </actuator>	 
@@ -742,16 +748,15 @@
     
     <transmission name="j6_trans">
 	 <type>transmission_interface/SimpleTransmission</type>
-     <joint name="j6" />
-     <actuator name="j6_motor">
-	    <hardwareInterface>EffortJointInterface</hardwareInterface>
+     <joint name="j6">
+		<hardwareInterface>EffortJointInterface</hardwareInterface>
+	 </joint> 
+     <actuator name="j6_motor">	    
         <mechanicalReduction>${j6_mechanical_reduction}</mechanicalReduction>
 		<motorTorqueConstant>${j6_motor_torque_constant}</motorTorqueConstant>
 	 </actuator>	 
     </transmission>
     
-    
-
 	<!-- JOINT 7 -->
 	<joint name="j7" type="revolute">
 	  <origin
@@ -766,9 +771,10 @@
     
     <transmission name="j7_trans">
 		<type>transmission_interface/SimpleTransmission</type>
-		<joint name="j7" />
-		<actuator name="j7_motor">
+		<joint name="j7">
 			<hardwareInterface>EffortJointInterface</hardwareInterface>
+		</joint>
+		<actuator name="j7_motor">			
 			<mechanicalReduction>${j7_mechanical_reduction}</mechanicalReduction>
 			<motorTorqueConstant>${j7_motor_torque_constant}</motorTorqueConstant>
 		</actuator>	 

@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <launch>
 
-  <!--arg name="urdf_file" default="$(find xacro)/xacro.py '$(find rb1_arm_description)/robots/rb1_arm_standalone.urdf.xacro'" /-->
-  <!--param name="robot_description" command="$(arg urdf_file)" /-->
+  <arg name="urdf_file" default="$(find xacro)/xacro.py '$(find rb1_arm_description)/robots/rb1_arm_standalone.urdf.xacro'" />
+  <param name="robot_description" command="$(arg urdf_file)" />
 
   <!-- send fake joint values -->
   <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">

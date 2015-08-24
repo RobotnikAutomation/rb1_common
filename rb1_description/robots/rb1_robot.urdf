@@ -9,11 +9,57 @@
   <!-- ***************** -->
   <!-- First we import all posible elements defined in the urdf.xacro files. All these elements are defined as macro:xacros -->
   <!-- Import RB1 base -->
+  <!-- ***************** -->
+  <!-- Imported elements -->
+  <!-- ***************** -->
+  <!-- First we import all posible elements defined in the urdf.xacro files. All these elements are defined as macro:xacros -->
+  <!-- Import RB1 base elements -->
+  <!-- ros control plugin -->
+  <!-- xacro:macro name="ros_control">
+    <gazebo>
+      <plugin name="ros_control" filename="libgazebo_ros_control.so">		
+        <robotNamespace>/rb1</robotNamespace>
+        <robotParam>robot_description</robotParam>
+        <controlPeriod>0.001</controlPeriod> 
+	    <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+      </plugin>
+    </gazebo>
+	</xacro:macro -->
+  <!-- differential drive plugin -->
   <gazebo reference="base_footprint">
     <material>Gazebo/Green</material>
   </gazebo>
+  <!-- Import RB1 wheels -->
+  <!-- Wheels -->
+  <!-- in kg-->
+  <!-- Wheels -->
+  <!-- in kg-->
+  <!-- Import all available sensors -->
+  <!-- This file unifies all sensors that can be used on simulation, defined as xacro:macros -->
+  <!-- Hokuyo urg04lx -->
+  <!-- Hokuyo utm30lx -->
+  <!-- Imu -->
+  <!-- Kinect -->
+  <!-- Asus Xtion PRO -->
+  <!-- Xacro properties -->
+  <!-- ***************** -->
+  <!-- Global parameters -->
+  <!-- ***************** -->
+  <!-- Wheel parameters -->
+  <!-- x,y,z in translation from base_link to the center of the wheel -->
+  <!-- Castor paramters -->
+  <!-- xacro:property name="omni_back_z" value="0.028" / -->
+  <!-- xacro:property name="omni_front_z" value="0.028" / -->
+  <!-- Flag to select the high or low quality model -->
+  <!-- *************** -->
+  <!-- Robots Elements -->
+  <!-- *************** -->
+  <!-- Here we create the robot elements using the xacro:macros imported at the beggining of this file -->
+  <!-- RB-1 base -->
+  <!-- Robot mechanical and motor parameters -->
   <xacro:property name="PI" value="3.1415926535897931"/>
   <xacro:property name="wheel_width" value="0.175"/>
+  <!-- BASE FOOTPRINT -->
   <link name="base_footprint">
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
@@ -29,6 +75,7 @@
     <parent link="base_footprint"/>
     <child link="base_link"/>
   </joint>
+  <!-- BASE_LINK -->
   <link name="base_link">
     <inertial>
       <mass value="25.0"/>
@@ -51,6 +98,7 @@
       </geometry>
     </collision>
   </link>
+  <!-- Gazebo ros control plugins -->
   <gazebo>
     <plugin filename="libgazebo_ros_control.so" name="ros_control">
       <robotNamespace>/rb1</robotNamespace>
@@ -59,6 +107,7 @@
       <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
     </plugin>
   </gazebo>
+  <!-- Gazebo skid steering plugins -->
   <gazebo>
     <plugin filename="libgazebo_ros_diff_drive.so" name="differential_drive_controller">
       <alwaysOn>true</alwaysOn>
@@ -85,6 +134,8 @@
       <publishTf>1</publishTf>
     </plugin>
   </gazebo>
+  <!-- WHEELS -->
+  <!--WHEEL TIRE -->
   <joint name="joint_right_wheel" type="continuous">
     <parent link="base_link"/>
     <child link="right_wheel"/>
@@ -114,12 +165,16 @@
       <inertia ixx="0.00165233333333" ixy="0" ixz="0" iyy="0.00165233333333" iyz="0" izz="0.002888"/>
     </inertial>
   </link>
+  <!-- Transmission is important to link the joints and the controller (see rb1_control/config/rb1_control.yaml)-->
   <transmission name="right_wheel_joint_trans">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="joint_right_wheel"/>
-    <actuator name="right_wheel_joint_motor">
+    <joint name="joint_right_wheel">
       <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="right_wheel_joint_motor">
+      <!-- hardwareInterface>EffortJointInterface</hardwareInterface -->
       <mechanicalReduction>1</mechanicalReduction>
+      <motorTorqueConstant>10</motorTorqueConstant>
     </actuator>
   </transmission>
   <gazebo reference="right_wheel">
@@ -130,6 +185,7 @@
     <fdir1 value="1 0 0"/>
     <turnGravityOff>false</turnGravityOff>
   </gazebo>
+  <!--WHEEL TIRE -->
   <joint name="joint_left_wheel" type="continuous">
     <parent link="base_link"/>
     <child link="left_wheel"/>
@@ -159,12 +215,16 @@
       <inertia ixx="0.00165233333333" ixy="0" ixz="0" iyy="0.00165233333333" iyz="0" izz="0.002888"/>
     </inertial>
   </link>
+  <!-- Transmission is important to link the joints and the controller (see rb1_control/config/rb1_control.yaml)-->
   <transmission name="left_wheel_joint_trans">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="joint_left_wheel"/>
-    <actuator name="left_wheel_joint_motor">
+    <joint name="joint_left_wheel">
       <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="left_wheel_joint_motor">
+      <!-- hardwareInterface>EffortJointInterface</hardwareInterface -->
       <mechanicalReduction>1</mechanicalReduction>
+      <motorTorqueConstant>10</motorTorqueConstant>
     </actuator>
   </transmission>
   <gazebo reference="left_wheel">
@@ -175,6 +235,9 @@
     <fdir1 value="1 0 0"/>
     <turnGravityOff>false</turnGravityOff>
   </gazebo>
+  <!-- OMNI DIRECTIONAL WHEELS -->
+  <!--WHEEL TIRE -->
+  <!-- joint name="joint_${name}_wheel" type="continuous" -->
   <joint name="joint_omni_back_wheel" type="fixed">
     <parent link="base_link"/>
     <child link="omni_back_wheel"/>
@@ -211,6 +274,14 @@
       <!-- inertia  ixx="0.001" ixy="0.0"  ixz="0.0"  iyy="0.001"  iyz="0.0"  izz="0.001" / -->
     </inertial>
   </link>
+  <!-- transmission name="${name}_wheel_joint_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="joint_${name}_wheel" />
+      <actuator name="${name}_wheel_joint_motor">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission -->
   <gazebo reference="omni_back_wheel">
     <mu1 value="0.0"/>
     <mu2 value="0.0"/>
@@ -219,6 +290,8 @@
     <fdir1 value="1 0 0"/>
     <turnGravityOff>false</turnGravityOff>
   </gazebo>
+  <!--WHEEL TIRE -->
+  <!-- joint name="joint_${name}_wheel" type="continuous" -->
   <joint name="joint_omni_front_left_wheel" type="fixed">
     <parent link="base_link"/>
     <child link="omni_front_left_wheel"/>
@@ -255,6 +328,14 @@
       <!-- inertia  ixx="0.001" ixy="0.0"  ixz="0.0"  iyy="0.001"  iyz="0.0"  izz="0.001" / -->
     </inertial>
   </link>
+  <!-- transmission name="${name}_wheel_joint_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="joint_${name}_wheel" />
+      <actuator name="${name}_wheel_joint_motor">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission -->
   <gazebo reference="omni_front_left_wheel">
     <mu1 value="0.0"/>
     <mu2 value="0.0"/>
@@ -263,6 +344,8 @@
     <fdir1 value="1 0 0"/>
     <turnGravityOff>false</turnGravityOff>
   </gazebo>
+  <!--WHEEL TIRE -->
+  <!-- joint name="joint_${name}_wheel" type="continuous" -->
   <joint name="joint_omni_front_right_wheel" type="fixed">
     <parent link="base_link"/>
     <child link="omni_front_right_wheel"/>
@@ -299,6 +382,14 @@
       <!-- inertia  ixx="0.001" ixy="0.0"  ixz="0.0"  iyy="0.001"  iyz="0.0"  izz="0.001" / -->
     </inertial>
   </link>
+  <!-- transmission name="${name}_wheel_joint_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="joint_${name}_wheel" />
+      <actuator name="${name}_wheel_joint_motor">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission -->
   <gazebo reference="omni_front_right_wheel">
     <mu1 value="0.0"/>
     <mu2 value="0.0"/>
@@ -307,6 +398,10 @@
     <fdir1 value="1 0 0"/>
     <turnGravityOff>false</turnGravityOff>
   </gazebo>
+  <!-- SENSORS -->
+  <!-- xacro:sensor_hokuyo_utm30lx name="hokuyo" parent="base_link">
+		<origin xyz="0.210 0.0 0.305" rpy="0 0 0"/>
+	</xacro:sensor_hokuyo_utm30lx -->
   <joint name="hokuyo_laser_joint" type="fixed">
     <origin rpy="0 3.1416 3.1416" xyz="0.220 0.0 0.170"/>
     <parent link="base_link"/>
@@ -331,6 +426,7 @@
       <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6"/>
     </inertial>
   </link>
+  <!-- Hokuyo sensor for simulation -->
   <gazebo reference="hokuyo_laser_link">
     <sensor name="hokuyo_sensor" type="ray">
       <pose>0 0 0 0 0 0</pose>
@@ -397,8 +493,36 @@
       <gaussianNoise>0.005</gaussianNoise>
     </plugin>
   </gazebo>
+  <!--
+    <xacro:sensor_kinect name="kinect" parent="base_link">
+        <origin xyz="0.3 0.0 0.16" rpy="0 0 0"/> 
+    </xacro:sensor_kinect>  
+-->
   <!-- Import RB1 torso -->
+  <!-- ***************** -->
+  <!-- Imported elements -->
+  <!-- ***************** -->
+  <!-- First we import all posible elements defined in the urdf.xacro files. All these elements are defined as macro:xacros -->
+  <!-- Import RB1 arm elements -->
+  <!-- xacro:include filename="$(find rb1_torso_description)/urdf/rb1_torso_3dof.gazebo.xacro" / -->
+  <!-- Import all available sensors -->
+  <!-- This file unifies all sensors that can be used on simulation, defined as xacro:macros -->
+  <!-- Hokuyo urg04lx -->
+  <!-- xacro:include filename="$(find rb1_torso_description)/urdf/sensors/hokuyo_urg04lx.urdf.xacro" / -->
+  <!-- Hokuyo utm30lx -->
+  <!-- xacro:include filename="$(find rb1_torso_description)/urdf/sensors/hokuyo_utm30lx.urdf.xacro" / -->
+  <!-- Kinect -->
+  <!-- xacro:include filename="$(find rb1_torso_description)/urdf/sensors/kinect.urdf.xacro" / -->
+  <!-- Asus Xtion PRO -->
+  <!-- Xacro properties -->
+  <!-- ***************** -->
+  <!-- Global parameters -->
+  <!-- ***************** -->
+  <!-- Flag to select the high or low quality model -->
+  <!-- RB-1 torso -->
+  <!-- Robot mechanical and motor parameters -->
   <xacro:property name="PI" value="3.1415926535897931"/>
+  <!-- BASE_LINK -->
   <link name="base_link_rb1_torso">
   </link>
   <link name="link1_torso">
@@ -461,9 +585,10 @@
   </joint>
   <transmission name="j1_torso_trans">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="j1_torso"/>
-    <actuator name="j1_torso_motor">
+    <joint name="j1_torso">
       <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="j1_torso_motor">
       <mechanicalReduction>320.0</mechanicalReduction>
       <motorTorqueConstant>1.0</motorTorqueConstant>
     </actuator>
@@ -500,9 +625,10 @@
   </joint>
   <transmission name="j1_head_trans">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="j1_head"/>
-    <actuator name="j1_head_motor">
+    <joint name="j1_head">
       <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="j1_head_motor">
       <mechanicalReduction>320.0</mechanicalReduction>
       <motorTorqueConstant>1.0</motorTorqueConstant>
     </actuator>
@@ -541,13 +667,15 @@
   </joint>
   <transmission name="j2_head_trans">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="j2_head"/>
-    <actuator name="j2_head_motor">
+    <joint name="j2_head">
       <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="j2_head_motor">
       <mechanicalReduction>320.0</mechanicalReduction>
       <motorTorqueConstant>1.0</motorTorqueConstant>
     </actuator>
   </transmission>
+  <!-- Ixtion sensor in head -->
   <joint name="xtion_head_cam_rgb_joint" type="fixed">
     <origin rpy="0 0 0" xyz="0.055 0.000 0.028"/>
     <parent link="link2_head"/>
@@ -620,6 +748,7 @@
       <inertia ixx="0.0001" ixy="0.0" ixz="0.0" iyy="0.0001" iyz="0.0" izz="0.0001"/>
     </inertial>
   </link>
+  <!-- RGBD sensor for simulation, same as Kinect -->
   <gazebo reference="xtion_head_cam_depth_frame">
     <sensor name="cam" type="depth">
       <always_on>true</always_on>
@@ -656,7 +785,15 @@
       </plugin>
     </sensor>
   </gazebo>
+  <!-- Gazebo ros control plugins -->
+  <!-- xacro:ros_control/ -->
   <!-- Import RB1 arm -->
+  <!-- ***************** -->
+  <!-- Imported elements -->
+  <!-- ***************** -->
+  <!-- First we import all posible elements defined in the urdf.xacro files. All these elements are defined as macro:xacros -->
+  <!-- Import RB1 arm elements -->
+  <!-- ros control plugin -->
   <gazebo reference="base_link_rb1_arm">
     <material>Gazebo/FlatBlack</material>
     <turnGravityOff>false</turnGravityOff>
@@ -721,6 +858,8 @@
     <material>Gazebo/Gray</material>
     <turnGravityOff>false</turnGravityOff>
   </gazebo>
+  <!-- Import all available sensors -->
+  <!-- xacro:include filename="$(find rb1_arm_description)/urdf/sensors/all_sensors.urdf.xacro" / -->
   <gazebo reference="base_link_gripper">
     <material>Gazebo/Grey</material>
   </gazebo>
@@ -812,20 +951,29 @@
   </joint>
   <transmission name="jg2_trans">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="jg2"/>
-    <actuator name="jg2_motor">
+    <joint name="jg2">
       <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="jg2_motor">
       <mechanicalReduction>304.0</mechanicalReduction>
       <motorTorqueConstant>3.0</motorTorqueConstant>
     </actuator>
   </transmission>
+  <!-- Joint elements -->
   <joint name="gripper_joint" type="fixed">
     <origin rpy="0.0 0.0 0.0" xyz="0.055 0.0 0.0"/>
     <parent link="end_effector_rb1_arm"/>
     <child link="base_link_gripper"/>
     <axis xyz="1 0 0"/>
   </joint>
+  <!-- ***************** -->
+  <!-- Global parameters -->
+  <!-- ***************** -->
+  <!-- Flag to select the high or low quality model -->
+  <!-- RB-1 arm -->
+  <!-- Robot mechanical and motor parameters -->
   <xacro:property name="PI" value="3.1415926535897931"/>
+  <!-- BASE_LINK -->
   <link name="base_link_rb1_arm">
     </link>
   <joint name="j1_rb1_arm" type="fixed">
@@ -834,6 +982,7 @@
     <child link="link01_rb1_arm"/>
     <axis xyz="0 0 0"/>
   </joint>
+  <!-- 01 -->
   <link name="link01_rb1_arm">
     <inertial>
       <mass value="0.506"/>
@@ -885,6 +1034,7 @@
     <child link="motor01_rb1_arm"/>
     <axis xyz="0 0 0"/>
   </joint>
+  <!-- JOINT 1 -->
   <link name="link12_rb1_arm">
     <inertial>
       <mass value="0.7"/>
@@ -940,18 +1090,21 @@
     <parent link="link01_rb1_arm"/>
     <child link="link12_rb1_arm"/>
     <axis xyz="0 0 1"/>
-    <limit effort="60.0" lower="-1.570796327" upper="1.570796327" velocity="2.9217"/>
+    <limit effort="60.0" lower="-1.55" upper="1.55" velocity="2.9217"/>
     <dynamics damping="0.7" friction="0.5"/>
   </joint>
   <transmission name="j1_trans">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="j1"/>
-    <actuator name="j1_motor">
+    <joint name="j1">
       <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="j1_motor">
+      <!-- hardwareInterface>EffortJointInterface</hardwareInterface -->
       <mechanicalReduction>502.0</mechanicalReduction>
       <motorTorqueConstant>50.0</motorTorqueConstant>
     </actuator>
   </transmission>
+  <!-- JOINT 2 -->
   <link name="link23_rb1_arm">
     <inertial>
       <mass value="0.429"/>
@@ -1010,18 +1163,20 @@
     <!-- check -->
     <!-- axis xyz="0 0 -1" / -->
     <axis xyz="0 0 1"/>
-    <limit effort="60.0" lower="-1.570796327" upper="1.570796327" velocity="2.9217"/>
+    <limit effort="60.0" lower="-1.95" upper="1.55" velocity="2.9217"/>
     <dynamics damping="0.7" friction="0.5"/>
   </joint>
   <transmission name="j2_trans">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="j2"/>
-    <actuator name="j2_motor">
+    <joint name="j2">
       <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="j2_motor">
       <mechanicalReduction>502.0</mechanicalReduction>
       <motorTorqueConstant>50.0</motorTorqueConstant>
     </actuator>
   </transmission>
+  <!-- JOINT 3 -->
   <link name="link34_rb1_arm">
     <inertial>
       <mass value="0.351"/>
@@ -1082,13 +1237,15 @@
   </joint>
   <transmission name="j3_trans">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="j3"/>
-    <actuator name="j3_motor">
+    <joint name="j3">
       <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="j3_motor">
       <mechanicalReduction>502.0</mechanicalReduction>
       <motorTorqueConstant>50.0</motorTorqueConstant>
     </actuator>
   </transmission>
+  <!-- JOINT 4 -->
   <link name="link45_rb1_arm">
     <inertial>
       <mass value="0.388"/>
@@ -1146,18 +1303,20 @@
     <!-- check -->
     <!-- xis xyz="0 0 -1" / -->
     <axis xyz="0 0 1"/>
-    <limit effort="35.0" lower="-1.570796327" upper="1.570796327" velocity="3.1527"/>
+    <limit effort="35.0" lower="-1.95" upper="1.95" velocity="3.1527"/>
     <dynamics damping="0.7" friction="0.5"/>
   </joint>
   <transmission name="j4_trans">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="j4"/>
-    <actuator name="j4_motor">
+    <joint name="j4">
       <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="j4_motor">
       <mechanicalReduction>502.0</mechanicalReduction>
       <motorTorqueConstant>5.0</motorTorqueConstant>
     </actuator>
   </transmission>
+  <!-- JOINT 5 -->
   <link name="link56_rb1_arm">
     <inertial>
       <mass value="0.3559"/>
@@ -1218,13 +1377,15 @@
   </joint>
   <transmission name="j5_trans">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="j5"/>
-    <actuator name="j5_motor">
+    <joint name="j5">
       <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="j5_motor">
       <mechanicalReduction>502.0</mechanicalReduction>
       <motorTorqueConstant>5.0</motorTorqueConstant>
     </actuator>
   </transmission>
+  <!-- JOINT 6 -->
   <link name="link67_rb1_arm">
     <inertial>
       <mass value="0.055"/>
@@ -1282,18 +1443,20 @@
     <!-- check -->
     <!-- axis xyz="0 0 -1" / -->
     <axis xyz="0 0 1"/>
-    <limit effort="8.0" lower="-1.570796327" upper="1.570796327" velocity="2.98452"/>
+    <limit effort="8.0" lower="-1.57" upper="1.57" velocity="2.98452"/>
     <dynamics damping="0.7" friction="0.5"/>
   </joint>
   <transmission name="j6_trans">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="j6"/>
-    <actuator name="j6_motor">
+    <joint name="j6">
       <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="j6_motor">
       <mechanicalReduction>304.0</mechanicalReduction>
       <motorTorqueConstant>3.0</motorTorqueConstant>
     </actuator>
   </transmission>
+  <!-- JOINT 7 -->
   <joint name="j7" type="revolute">
     <origin rpy="1.5708 0.0 0.0" xyz="0 0 0"/>
     <parent link="link67_rb1_arm"/>
@@ -1304,15 +1467,18 @@
   </joint>
   <transmission name="j7_trans">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="j7"/>
-    <actuator name="j7_motor">
+    <joint name="j7">
       <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="j7_motor">
       <mechanicalReduction>304.0</mechanicalReduction>
       <motorTorqueConstant>3.0</motorTorqueConstant>
     </actuator>
   </transmission>
   <link name="end_effector_rb1_arm">	    
     </link>
+  <!-- Gazebo ros control plugins -->
+  <!-- xacro:ros_control/ -->
   <!-- Gazebo ros control plugins -->
   <!-- xacro:ros_control/ -->
   <gazebo>

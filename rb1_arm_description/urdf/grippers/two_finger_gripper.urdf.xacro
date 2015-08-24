@@ -111,9 +111,10 @@
   
   <transmission name="jg1_trans">
 	 <type>transmission_interface/SimpleTransmission</type>
-     <joint name="jg1" />
-     <actuator name="jg1_motor">
-	    <hardwareInterface>EffortJointInterface</hardwareInterface>
+     <joint name="jg1">
+		<hardwareInterface>EffortJointInterface</hardwareInterface>
+	 </joint> 
+     <actuator name="jg1_motor">	    
         <mechanicalReduction>${finger_mechanical_reduction}</mechanicalReduction>
 		<motorTorqueConstant>${finger_motor_torque_constant}</motorTorqueConstant>
 	 </actuator>	 
@@ -177,9 +178,10 @@
 
   <transmission name="jg2_trans">
 	 <type>transmission_interface/SimpleTransmission</type>
-     <joint name="jg2" />
-     <actuator name="jg2_motor">
-	    <hardwareInterface>EffortJointInterface</hardwareInterface>
+     <joint name="jg2">
+		 <hardwareInterface>EffortJointInterface</hardwareInterface>
+     </joint>
+     <actuator name="jg2_motor">	    
         <mechanicalReduction>${finger_mechanical_reduction}</mechanicalReduction>
 		<motorTorqueConstant>${finger_motor_torque_constant}</motorTorqueConstant>
 	 </actuator>	 

@@ -116,9 +116,10 @@
 
   <transmission name="j1_torso_trans">
 	 <type>transmission_interface/SimpleTransmission</type>
-     <joint name="j1_torso" />
-     <actuator name="j1_torso_motor">
-	    <hardwareInterface>EffortJointInterface</hardwareInterface>
+     <joint name="j1_torso">
+		 <hardwareInterface>EffortJointInterface</hardwareInterface>
+     </joint>
+     <actuator name="j1_torso_motor">	    
         <mechanicalReduction>${j1_torso_mechanical_reduction}</mechanicalReduction>
 		<motorTorqueConstant>${j1_torso_motor_torque_constant}</motorTorqueConstant>
 	 </actuator>	 
@@ -169,9 +170,10 @@
 
   <transmission name="j1_head_trans">
 	 <type>transmission_interface/SimpleTransmission</type>
-     <joint name="j1_head" />
+     <joint name="j1_head">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+     </joint>     
      <actuator name="j1_head_motor">
-	    <hardwareInterface>EffortJointInterface</hardwareInterface>
         <mechanicalReduction>${j1_head_mechanical_reduction}</mechanicalReduction>
 		<motorTorqueConstant>${j1_head_motor_torque_constant}</motorTorqueConstant>
 	 </actuator>	 
@@ -226,9 +228,10 @@
 
   <transmission name="j2_head_trans">
 	 <type>transmission_interface/SimpleTransmission</type>
-     <joint name="j2_head" />
-     <actuator name="j2_head_motor">
-	    <hardwareInterface>EffortJointInterface</hardwareInterface>
+     <joint name="j2_head">
+		<hardwareInterface>EffortJointInterface</hardwareInterface>
+	 </joint>
+     <actuator name="j2_head_motor">	 
         <mechanicalReduction>${j2_head_mechanical_reduction}</mechanicalReduction>
 		<motorTorqueConstant>${j2_head_motor_torque_constant}</motorTorqueConstant>
 	 </actuator>	 
