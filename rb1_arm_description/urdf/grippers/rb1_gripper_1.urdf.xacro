@@ -5,7 +5,7 @@
   <xacro:property name="finger_motor_torque_constant" value="3.0"/>
   <xacro:property name="joint_effort_limit" value="3.0"/>
   <xacro:property name="joint_velocity_limit" value="2.98452"/>
-	<xacro:property name="finger_lower_limit" value="-0.7"/> 
+	<xacro:property name="finger_lower_limit" value="-1.57"/> 
 	<xacro:property name="finger_upper_limit" value="0.0"/> 
 
   <xacro:include filename="$(find rb1_arm_description)/urdf/grippers/rb1_gripper_1.gazebo.xacro" />
