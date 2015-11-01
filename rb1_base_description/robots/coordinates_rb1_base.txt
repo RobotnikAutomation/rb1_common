@@ -2,7 +2,7 @@ Coordinates
 
 Current version:
 Traction wheels (0 , 216.5 , 51.2); (0 , -216.5 , 51.2)
-Omni Wheels (133 , 144 , 25.8);(133 , -144 , 25.8); (-195 , 0 , 25.8)
+Omni Wheels (133 , 144 , 25.8);(133 , -144 , 25.8); (-195 , 0 , 25.8)  (*) 0.5 mm higher for friction reduction
 Hokuyo (223 , 0 , 209)  [z-50: (223, 0, 159)]
 
 V0:

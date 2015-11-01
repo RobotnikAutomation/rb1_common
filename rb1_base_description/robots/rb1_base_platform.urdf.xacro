@@ -33,11 +33,11 @@
 	<!-- Castor paramters -->
 	<xacro:property name="omni_back_x" value="0.195" />
 	<xacro:property name="omni_back_y" value="0.0" />
-	<xacro:property name="omni_back_z" value="0.026" />
+	<xacro:property name="omni_back_z" value="0.0265" />
 	
 	<xacro:property name="omni_front_x" value="0.133" /> 
 	<xacro:property name="omni_front_y" value="0.144" />
-	<xacro:property name="omni_front_z" value="0.026" />
+	<xacro:property name="omni_front_z" value="0.0265" />
 
 	<!-- Flag to select the high or low quality model -->
 	<xacro:property name="hq" value="true" />
