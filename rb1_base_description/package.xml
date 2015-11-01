@@ -49,6 +49,7 @@
   <run_depend>std_msgs</run_depend>
   <run_depend>std_srvs</run_depend>
   <run_depend>tf</run_depend>
+  <run_depend>robotnik_sensors</run_depend>
 
 
   <!-- The export tag contains other, unspecified, tags -->
