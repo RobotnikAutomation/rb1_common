@@ -23,10 +23,11 @@
         <rightJoint>joint_right_wheel</rightJoint -->
         <leftJoint>joint_right_wheel</leftJoint>
         <rightJoint>joint_left_wheel</rightJoint>
-        <wheelSeparation>0.365</wheelSeparation>
-        <!-- wheelDiameter>0.1524</wheelDiameter -->
+		<!-- For V0 0.365 -->
+        <!-- wheelSeparation>0.365</wheelSeparation -->         
+        <wheelSeparation>0.433</wheelSeparation>         
         <wheelDiameter>0.1524</wheelDiameter>
-        <commandTopic>cmd_vel</commandTopic>
+        <commandTopic>/rb1/cmd_vel</commandTopic>
         <odometryTopic>odom</odometryTopic>
         <odometryFrame>odom</odometryFrame>
         <robotBaseFrame>base_footprint</robotBaseFrame>
