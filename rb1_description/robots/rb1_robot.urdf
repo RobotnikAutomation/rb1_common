@@ -36,20 +36,25 @@
   <!-- in kg-->
   <!-- Import all available sensors -->
   <!-- This file unifies all sensors that can be used on simulation, defined as xacro:macros -->
+  <!-- Axis p5512 -->
+  <!-- Axis m5013 -->
+  <!-- Fotonic -->
+  <!-- GPS -->
   <!-- Hokuyo urg04lx -->
   <!-- Hokuyo utm30lx -->
+  <!-- Hokuyo ust10lx -->
   <!-- Imu -->
   <!-- Kinect -->
   <!-- Asus Xtion PRO -->
   <!-- Xacro properties -->
+  <!-- Hokuyo 3d -->
+  <!-- KinectV2 -->
   <!-- ***************** -->
   <!-- Global parameters -->
   <!-- ***************** -->
   <!-- Wheel parameters -->
   <!-- x,y,z in translation from base_link to the center of the wheel -->
   <!-- Castor paramters -->
-  <!-- xacro:property name="omni_back_z" value="0.028" / -->
-  <!-- xacro:property name="omni_front_z" value="0.028" / -->
   <!-- Flag to select the high or low quality model -->
   <!-- *************** -->
   <!-- Robots Elements -->
@@ -69,9 +74,7 @@
     </visual>
   </link>
   <joint name="base_footprint_joint" type="fixed">
-    <!-- origin xyz="0 0 ${wheel_radius}" rpy="0 0 0" / -->
     <origin rpy="0 0 0" xyz="0 0 0.025"/>
-    <!-- origin xyz="0 0 0.025" rpy="0 0 0" / -->
     <parent link="base_footprint"/>
     <child link="base_link"/>
   </joint>
@@ -80,7 +83,7 @@
     <inertial>
       <mass value="25.0"/>
       <origin xyz="0 0 0"/>
-      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+      <inertia ixx="0.007" ixy="0.0" ixz="0.0" iyy="0.007" iyz="0.0" izz="0.78"/>
     </inertial>
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
@@ -99,14 +102,7 @@
     </collision>
   </link>
   <!-- Gazebo ros control plugins -->
-  <gazebo>
-    <plugin filename="libgazebo_ros_control.so" name="ros_control">
-      <robotNamespace>/rb1</robotNamespace>
-      <robotParam>robot_description</robotParam>
-      <controlPeriod>0.001</controlPeriod>
-      <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
-    </plugin>
-  </gazebo>
+  <xacro:ros_control/>
   <!-- Gazebo skid steering plugins -->
   <gazebo>
     <plugin filename="libgazebo_ros_diff_drive.so" name="differential_drive_controller">
@@ -116,10 +112,11 @@
         <rightJoint>joint_right_wheel</rightJoint -->
       <leftJoint>joint_right_wheel</leftJoint>
       <rightJoint>joint_left_wheel</rightJoint>
-      <wheelSeparation>0.365</wheelSeparation>
-      <!-- wheelDiameter>0.1524</wheelDiameter -->
+      <!-- For V0 0.365 -->
+      <!-- wheelSeparation>0.365</wheelSeparation -->
+      <wheelSeparation>0.433</wheelSeparation>
       <wheelDiameter>0.1524</wheelDiameter>
-      <commandTopic>cmd_vel</commandTopic>
+      <commandTopic>/rb1/cmd_vel</commandTopic>
       <odometryTopic>odom</odometryTopic>
       <odometryFrame>odom</odometryFrame>
       <robotBaseFrame>base_footprint</robotBaseFrame>
@@ -139,7 +136,7 @@
   <joint name="joint_right_wheel" type="continuous">
     <parent link="base_link"/>
     <child link="right_wheel"/>
-    <origin rpy="0 0 0" xyz="0.0 -0.183 0.051"/>
+    <origin rpy="0 0 0" xyz="0.0 -0.217 0.051"/>
     <axis rpy="0 0 0" xyz="0 1 0"/>
     <limit effort="100" velocity="100"/>
     <joint_properties damping="0.0" friction="0.0"/>
@@ -156,13 +153,13 @@
     <collision>
       <origin rpy="1.57079632679 0 0" xyz="0 0 0"/>
       <geometry>
-        <cylinder length="0.05" radius="0.076"/>
+        <cylinder length="0.025" radius="0.076"/>
       </geometry>
     </collision>
     <inertial>
       <mass value="1.0"/>
       <origin xyz="0 0 0"/>
-      <inertia ixx="0.00165233333333" ixy="0" ixz="0" iyy="0.00165233333333" iyz="0" izz="0.002888"/>
+      <inertia ixx="0.00149608333333" ixy="0" ixz="0" iyy="0.00149608333333" iyz="0" izz="0.002888"/>
     </inertial>
   </link>
   <!-- Transmission is important to link the joints and the controller (see rb1_control/config/rb1_control.yaml)-->
@@ -189,7 +186,7 @@
   <joint name="joint_left_wheel" type="continuous">
     <parent link="base_link"/>
     <child link="left_wheel"/>
-    <origin rpy="0 0 0" xyz="0.0 0.183 0.051"/>
+    <origin rpy="0 0 0" xyz="0.0 0.217 0.051"/>
     <axis rpy="0 0 0" xyz="0 1 0"/>
     <limit effort="100" velocity="100"/>
     <joint_properties damping="0.0" friction="0.0"/>
@@ -206,13 +203,13 @@
     <collision>
       <origin rpy="1.57079632679 0 0" xyz="0 0 0"/>
       <geometry>
-        <cylinder length="0.05" radius="0.076"/>
+        <cylinder length="0.025" radius="0.076"/>
       </geometry>
     </collision>
     <inertial>
       <mass value="1.0"/>
       <origin xyz="0 0 0"/>
-      <inertia ixx="0.00165233333333" ixy="0" ixz="0" iyy="0.00165233333333" iyz="0" izz="0.002888"/>
+      <inertia ixx="0.00149608333333" ixy="0" ixz="0" iyy="0.00149608333333" iyz="0" izz="0.002888"/>
     </inertial>
   </link>
   <!-- Transmission is important to link the joints and the controller (see rb1_control/config/rb1_control.yaml)-->
@@ -241,7 +238,7 @@
   <joint name="joint_omni_back_wheel" type="fixed">
     <parent link="base_link"/>
     <child link="omni_back_wheel"/>
-    <origin rpy="0 0 0" xyz="-0.185 0.0 0.0265"/>
+    <origin rpy="0 0 0" xyz="-0.195 0.0 0.0265"/>
     <axis rpy="0 0 0" xyz="0 1 0"/>
     <limit effort="100" velocity="100"/>
     <joint_properties damping="0.0" friction="0.0"/>
@@ -270,7 +267,7 @@
     <inertial>
       <mass value="1.0"/>
       <origin xyz="0 0 0"/>
-      <inertia ixx="0.0002107" ixy="0" ixz="0" iyy="0.0002107" iyz="0" izz="0.00039015"/>
+      <inertia ixx="0.000235075" ixy="0" ixz="0" iyy="0.000235075" iyz="0" izz="0.00039015"/>
       <!-- inertia  ixx="0.001" ixy="0.0"  ixz="0.0"  iyy="0.001"  iyz="0.0"  izz="0.001" / -->
     </inertial>
   </link>
@@ -295,7 +292,7 @@
   <joint name="joint_omni_front_left_wheel" type="fixed">
     <parent link="base_link"/>
     <child link="omni_front_left_wheel"/>
-    <origin rpy="0 0 0" xyz="0.133 0.142 0.0265"/>
+    <origin rpy="0 0 0" xyz="0.133 0.144 0.0265"/>
     <axis rpy="0 0 0" xyz="0 1 0"/>
     <limit effort="100" velocity="100"/>
     <joint_properties damping="0.0" friction="0.0"/>
@@ -324,7 +321,7 @@
     <inertial>
       <mass value="1.0"/>
       <origin xyz="0 0 0"/>
-      <inertia ixx="0.0002107" ixy="0" ixz="0" iyy="0.0002107" iyz="0" izz="0.00039015"/>
+      <inertia ixx="0.000235075" ixy="0" ixz="0" iyy="0.000235075" iyz="0" izz="0.00039015"/>
       <!-- inertia  ixx="0.001" ixy="0.0"  ixz="0.0"  iyy="0.001"  iyz="0.0"  izz="0.001" / -->
     </inertial>
   </link>
@@ -349,7 +346,7 @@
   <joint name="joint_omni_front_right_wheel" type="fixed">
     <parent link="base_link"/>
     <child link="omni_front_right_wheel"/>
-    <origin rpy="0 0 0" xyz="0.133 -0.142 0.0265"/>
+    <origin rpy="0 0 0" xyz="0.133 -0.144 0.0265"/>
     <axis rpy="0 0 0" xyz="0 1 0"/>
     <limit effort="100" velocity="100"/>
     <joint_properties damping="0.0" friction="0.0"/>
@@ -378,7 +375,7 @@
     <inertial>
       <mass value="1.0"/>
       <origin xyz="0 0 0"/>
-      <inertia ixx="0.0002107" ixy="0" ixz="0" iyy="0.0002107" iyz="0" izz="0.00039015"/>
+      <inertia ixx="0.000235075" ixy="0" ixz="0" iyy="0.000235075" iyz="0" izz="0.00039015"/>
       <!-- inertia  ixx="0.001" ixy="0.0"  ixz="0.0"  iyy="0.001"  iyz="0.0"  izz="0.001" / -->
     </inertial>
   </link>
@@ -402,8 +399,11 @@
   <!-- xacro:sensor_hokuyo_utm30lx name="hokuyo" parent="base_link">
 		<origin xyz="0.210 0.0 0.305" rpy="0 0 0"/>
 	</xacro:sensor_hokuyo_utm30lx -->
+  <!-- xacro:sensor_hokuyo_urg04lx name="hokuyo" parent="base_link">
+        <origin xyz="0.223 0.0 0.209" rpy="0 3.1416 3.1416"/>
+    </xacro:sensor_hokuyo_urg04lx -->
   <joint name="hokuyo_laser_joint" type="fixed">
-    <origin rpy="0 3.1416 3.1416" xyz="0.220 0.0 0.170"/>
+    <origin rpy="0 3.1416 3.1416" xyz="0.223 0.0 0.159"/>
     <parent link="base_link"/>
     <child link="hokuyo_laser_link"/>
   </joint>
@@ -417,7 +417,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 -0.05"/>
       <geometry>
-        <mesh filename="package://rb1_base_description/meshes/sensors/hokuyo_urg_04lx.dae"/>
+        <mesh filename="package://robotnik_sensors/meshes/hokuyo_ust_10lx.dae"/>
       </geometry>
     </visual>
     <inertial>
@@ -431,21 +431,20 @@
     <sensor name="hokuyo_sensor" type="ray">
       <pose>0 0 0 0 0 0</pose>
       <visualize>false</visualize>
-      <update_rate>30</update_rate>
+      <update_rate>40</update_rate>
       <ray>
         <scan>
           <horizontal>
             <samples>1081</samples>
             <resolution>1</resolution>
             <min_angle>2.35619449</min_angle>
-            <!-- +/-135 deg -->
             <max_angle>-2.35619449</max_angle>
           </horizontal>
         </scan>
         <range>
-          <min>0.10</min>
-          <max>30.0</max>
-          <resolution>0.01</resolution>
+          <min>0.02</min>
+          <max>20.0</max>
+          <resolution>0.004363323</resolution>
         </range>
         <noise>
           <type>gaussian</type>
@@ -454,7 +453,7 @@
         </noise>
       </ray>
       <plugin filename="libgazebo_ros_laser.so" name="gazebo_ros_head_hokuyo_controller">
-        <topicName>rb1/hokuyo/scan</topicName>
+        <topicName>hokuyo/scan</topicName>
         <frameName>hokuyo_laser_link</frameName>
       </plugin>
     </sensor>
@@ -487,9 +486,9 @@
   </link>
   <gazebo>
     <plugin filename="libgazebo_ros_imu.so" name="ros_imu">
-      <topicName>rb1/imu_data</topicName>
+      <topicName>imu_data</topicName>
       <bodyName>imu_link</bodyName>
-      <serviceName>rb1/imu_service</serviceName>
+      <serviceName>imu_service</serviceName>
       <gaussianNoise>0.005</gaussianNoise>
     </plugin>
   </gazebo>
@@ -507,14 +506,19 @@
   <!-- xacro:include filename="$(find rb1_torso_description)/urdf/rb1_torso_3dof.gazebo.xacro" / -->
   <!-- Import all available sensors -->
   <!-- This file unifies all sensors that can be used on simulation, defined as xacro:macros -->
+  <!-- Axis p5512 -->
+  <!-- Axis m5013 -->
+  <!-- Fotonic -->
+  <!-- GPS -->
   <!-- Hokuyo urg04lx -->
-  <!-- xacro:include filename="$(find rb1_torso_description)/urdf/sensors/hokuyo_urg04lx.urdf.xacro" / -->
   <!-- Hokuyo utm30lx -->
-  <!-- xacro:include filename="$(find rb1_torso_description)/urdf/sensors/hokuyo_utm30lx.urdf.xacro" / -->
+  <!-- Hokuyo ust10lx -->
+  <!-- Imu -->
   <!-- Kinect -->
-  <!-- xacro:include filename="$(find rb1_torso_description)/urdf/sensors/kinect.urdf.xacro" / -->
   <!-- Asus Xtion PRO -->
   <!-- Xacro properties -->
+  <!-- Hokuyo 3d -->
+  <!-- KinectV2 -->
   <!-- ***************** -->
   <!-- Global parameters -->
   <!-- ***************** -->
@@ -709,7 +713,7 @@
     <visual>
       <origin rpy="-1.57079632679 -3.14159265359 -1.57079632679" xyz="-0.01 0 0"/>
       <geometry>
-        <mesh filename="package://rb1_base_description/meshes/sensors/asus_xtion_pro_live.dae" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://robotnik_sensors/meshes/asus_xtion_pro_live.dae" scale="0.001 0.001 0.001"/>
       </geometry>
     </visual>
     <collision>
@@ -766,7 +770,7 @@
         </clip>
       </camera>
       <plugin filename="libgazebo_ros_openni_kinect.so" name="xtion_pro_cam_controller">
-        <cameraName>rb1/xtion_head</cameraName>
+        <cameraName>xtion_head</cameraName>
         <alwaysOn>true</alwaysOn>
         <updateRate>15</updateRate>
         <imageTopicName>rgb/image_raw</imageTopicName>
@@ -793,71 +797,6 @@
   <!-- ***************** -->
   <!-- First we import all posible elements defined in the urdf.xacro files. All these elements are defined as macro:xacros -->
   <!-- Import RB1 arm elements -->
-  <!-- ros control plugin -->
-  <gazebo reference="base_link_rb1_arm">
-    <material>Gazebo/FlatBlack</material>
-    <turnGravityOff>false</turnGravityOff>
-  </gazebo>
-  <gazebo reference="link01_rb1_arm">
-    <material>Gazebo/Gray</material>
-    <turnGravityOff>false</turnGravityOff>
-  </gazebo>
-  <gazebo reference="motor01_rb1_arm">
-    <material>Gazebo/Black</material>
-    <turnGravityOff>false</turnGravityOff>
-  </gazebo>
-  <gazebo reference="link12_rb1_arm">
-    <material>Gazebo/Gray</material>
-    <turnGravityOff>false</turnGravityOff>
-  </gazebo>
-  <gazebo reference="motor12_rb1_arm">
-    <material>Gazebo/Black</material>
-    <turnGravityOff>false</turnGravityOff>
-  </gazebo>
-  <gazebo reference="link23_rb1_arm">
-    <material>Gazebo/Gray</material>
-    <turnGravityOff>false</turnGravityOff>
-  </gazebo>
-  <gazebo reference="motor23_rb1_arm">
-    <material>Gazebo/Black</material>
-    <turnGravityOff>false</turnGravityOff>
-  </gazebo>
-  <gazebo reference="link34_rb1_arm">
-    <material>Gazebo/Gray</material>
-    <turnGravityOff>false</turnGravityOff>
-  </gazebo>
-  <gazebo reference="motor34_rb1_arm">
-    <material>Gazebo/Black</material>
-    <turnGravityOff>false</turnGravityOff>
-  </gazebo>
-  <gazebo reference="link45_rb1_arm">
-    <material>Gazebo/Gray</material>
-    <turnGravityOff>false</turnGravityOff>
-  </gazebo>
-  <gazebo reference="motor45_rb1_arm">
-    <material>Gazebo/Black</material>
-    <turnGravityOff>false</turnGravityOff>
-  </gazebo>
-  <gazebo reference="link56_rb1_arm">
-    <material>Gazebo/Gray</material>
-    <turnGravityOff>false</turnGravityOff>
-  </gazebo>
-  <gazebo reference="motor56_rb1_arm">
-    <material>Gazebo/Black</material>
-    <turnGravityOff>false</turnGravityOff>
-  </gazebo>
-  <gazebo reference="link67_rb1_arm">
-    <material>Gazebo/Gray</material>
-    <turnGravityOff>false</turnGravityOff>
-  </gazebo>
-  <gazebo reference="motor67_rb1_arm">
-    <material>Gazebo/Black</material>
-    <turnGravityOff>false</turnGravityOff>
-  </gazebo>
-  <gazebo reference="end_effector_rb1_arm">
-    <material>Gazebo/Gray</material>
-    <turnGravityOff>false</turnGravityOff>
-  </gazebo>
   <!-- Import all available sensors -->
   <!-- xacro:include filename="$(find rb1_arm_description)/urdf/sensors/all_sensors.urdf.xacro" / -->
   <gazebo reference="base_link_gripper">
@@ -974,16 +913,25 @@
   <!-- Robot mechanical and motor parameters -->
   <xacro:property name="PI" value="3.1415926535897931"/>
   <!-- BASE_LINK -->
-  <link name="base_link_rb1_arm">
+  <!-- link
+      name="base_link_rb1_arm">
     </link>
-  <joint name="j1_rb1_arm" type="fixed">
-    <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
-    <parent link="base_link_rb1_arm"/>
-    <child link="link01_rb1_arm"/>
-    <axis xyz="0 0 0"/>
-  </joint>
+	<joint
+		  name="j1_rb1_arm"
+		  type="fixed">
+		<origin
+		  xyz="0.0 0.0 0.0"
+		  rpy="0.0 0.0 0.0" />
+		<parent
+		  link="base_link_rb1_arm" />
+		<child
+		  link="link01_rb1_arm" />
+		<axis
+		  xyz="0 0 0" />
+	</joint -->
   <!-- 01 -->
-  <link name="link01_rb1_arm">
+  <!-- link name="link01_rb1_arm" -->
+  <link name="base_link_rb1_arm">
     <inertial>
       <mass value="0.506"/>
       <origin xyz="-0.05161 0 -0.003"/>
@@ -1030,7 +978,9 @@
   </link>
   <joint name="j01m_rb1_arm" type="fixed">
     <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
-    <parent link="link01_rb1_arm"/>
+    <!-- parent
+		  link="link01_rb1_arm" / -->
+    <parent link="base_link_rb1_arm"/>
     <child link="motor01_rb1_arm"/>
     <axis xyz="0 0 0"/>
   </joint>
@@ -1087,7 +1037,8 @@
   </joint>
   <joint name="j1" type="revolute">
     <origin rpy="0.0 0.0 0.0" xyz="0 0 0"/>
-    <parent link="link01_rb1_arm"/>
+    <!-- parent link="link01_rb1_arm" /-->
+    <parent link="base_link_rb1_arm"/>
     <child link="link12_rb1_arm"/>
     <axis xyz="0 0 1"/>
     <limit effort="60.0" lower="-1.55" upper="1.55" velocity="2.9217"/>
@@ -1300,8 +1251,6 @@
     <origin rpy="0.0 0.0 0.0" xyz="0 0 0"/>
     <parent link="link34_rb1_arm"/>
     <child link="link45_rb1_arm"/>
-    <!-- check -->
-    <!-- xis xyz="0 0 -1" / -->
     <axis xyz="0 0 1"/>
     <limit effort="35.0" lower="-1.95" upper="1.95" velocity="3.1527"/>
     <dynamics damping="0.7" friction="0.5"/>
@@ -1440,8 +1389,6 @@
     <origin rpy="0.0 0.0 0.0" xyz="0 0 0"/>
     <parent link="link56_rb1_arm"/>
     <child link="link67_rb1_arm"/>
-    <!-- check -->
-    <!-- axis xyz="0 0 -1" / -->
     <axis xyz="0 0 1"/>
     <limit effort="8.0" lower="-1.57" upper="1.57" velocity="2.98452"/>
     <dynamics damping="0.7" friction="0.5"/>
@@ -1481,14 +1428,14 @@
   <!-- xacro:ros_control/ -->
   <!-- Gazebo ros control plugins -->
   <!-- xacro:ros_control/ -->
-  <gazebo>
-    <plugin filename="libgazebo_ros_control.so" name="ros_control">
-      <robotNamespace>/rb1</robotNamespace>
-      <robotParam>robot_description</robotParam>
-      <controlPeriod>0.001</controlPeriod>
-      <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
-    </plugin>
-  </gazebo>
+  <!-- gazebo>
+      <plugin name="ros_control" filename="libgazebo_ros_control.so">		
+        <robotNamespace>/rb1</robotNamespace>
+        <robotParam>robot_description</robotParam>
+        <controlPeriod>0.001</controlPeriod> 
+	    <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+      </plugin>
+    </gazebo -->
   <!-- Fix torso to base -->
   <joint name="j_base_torso" type="fixed">
     <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
