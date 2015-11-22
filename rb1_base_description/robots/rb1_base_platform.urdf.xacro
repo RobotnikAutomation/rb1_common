@@ -12,7 +12,7 @@
     <xacro:include filename="$(find rb1_base_description)/urdf/bases/rb1_base.urdf.xacro" />
 	
 	<!-- Import RB1 wheels -->
-	<xacro:include filename="$(find rb1_base_description)/urdf/wheels/rubber_wheel_.urdf.xacro" />	
+	<xacro:include filename="$(find rb1_base_description)/urdf/wheels/rubber_wheel.urdf.xacro" />	
 	<xacro:include filename="$(find rb1_base_description)/urdf/wheels/omni_wheel.urdf.xacro" />
     
 	<!-- Import all available sensors -->
