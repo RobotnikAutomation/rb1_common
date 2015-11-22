@@ -113,7 +113,8 @@ class RB1BasePad
 	//! buttons to the pan-tilt-zoom camera
 	int ptz_tilt_up_, ptz_tilt_down_, ptz_pan_right_, ptz_pan_left_;
 	//! Enables/disables the pad
-	ros::ServiceServer enable_disable_srv_;
+	// ros::ServiceServer enable_disable_srv_;
+
 	//! Service to modify the digital outputs
 	ros::ServiceClient set_digital_outputs_client_;  
 	//! Number of buttons of the joystick
@@ -132,7 +133,7 @@ class RB1BasePad
 	//! Diagnostics max freq
 	double max_freq_command, max_freq_joy; // 	
 	//! Flag to enable/disable the communication with the publishers topics
-	bool bEnable;
+	// bool bEnable;
     //! Client of the sound play service
     //  sound_play::SoundClient sc;
 	//! Pan & tilt increment (degrees)
@@ -227,9 +228,9 @@ RB1BasePad::RB1BasePad():
 	                    diagnostic_updater::FrequencyStatusParam(&min_freq_command, &max_freq_command, 0.1, 10));
 
 	// Advertises new service to enable/disable the pad
-	enable_disable_srv_ = nh_.advertiseService("/rb1_base_pad/enable_disable_pad",  &RB1BasePad::EnableDisablePad, this);
+	// enable_disable_srv_ = nh_.advertiseService("/rb1_base_pad/enable_disable_pad",  &RB1BasePad::EnableDisablePad, this);
+	// bEnable = true;	// Communication flag enabled by default
 
-	bEnable = true;	// Communication flag enabled by default
 }
 
 
@@ -245,6 +246,7 @@ void RB1BasePad::Update(){
  *	\brief Enables/Disables the pad
  *
  */
+/*
 bool RB1BasePad::EnableDisablePad(rb1_base_pad::enable_disable_pad::Request &req, rb1_base_pad::enable_disable_pad::Response &res )
 {
 	bEnable = req.value;
@@ -253,12 +255,13 @@ bool RB1BasePad::EnableDisablePad(rb1_base_pad::enable_disable_pad::Request &req
 	res.ret = true;
 	return true;
 }
+*/
 
 void RB1BasePad::padCallback(const sensor_msgs::Joy::ConstPtr& joy)
 {
 	geometry_msgs::Twist vel;
 	robotnik_msgs::ptz ptz;
-    bool ptzEvent = false;
+        bool ptzEvent = false;
 
 	vel.angular.x = 0.0;  vel.angular.y = 0.0; vel.angular.z = 0.0;
 	vel.linear.x = 0.0;   vel.linear.y = 0.0; vel.linear.z = 0.0;
@@ -315,10 +318,8 @@ void RB1BasePad::padCallback(const sensor_msgs::Joy::ConstPtr& joy)
 				write_do_srv.request.output = output_1_;
 				bOutput1=!bOutput1;
 				write_do_srv.request.value = bOutput1;
-				if(bEnable){
-					set_digital_outputs_client_.call( write_do_srv );
-					bRegisteredButtonEvent[button_output_1_] = true;
-				}
+				set_digital_outputs_client_.call( write_do_srv );
+				bRegisteredButtonEvent[button_output_1_] = true;
 			}
 		}else{
 			bRegisteredButtonEvent[button_output_1_] = false;
@@ -332,37 +333,11 @@ void RB1BasePad::padCallback(const sensor_msgs::Joy::ConstPtr& joy)
 				write_do_srv.request.output = output_2_;
 				bOutput2=!bOutput2;
 				write_do_srv.request.value = bOutput2;
-
-				if(bEnable){
-					set_digital_outputs_client_.call( write_do_srv );
-					bRegisteredButtonEvent[button_output_2_] = true;
-				}
+				set_digital_outputs_client_.call( write_do_srv );
+				bRegisteredButtonEvent[button_output_2_] = true;
 			}                     		  	
 		}else{
 			bRegisteredButtonEvent[button_output_2_] = false;
-		}
-		 
-
-                // HOMING SERVICE 
-		if (joy->buttons[button_home_] == 1) {
-			if (!bRegisteredButtonEvent[button_home_]) {
-				robotnik_msgs::home home_srv;
-				home_srv.request.request = true;
-				if (bEnable) {
-                                   ROS_INFO("RB1BasePad::padCallback - Home");
-   				   doHome.call( home_srv );			
-                                   bRegisteredButtonEvent[button_home_] = true;
-                                   }                                  
-			}
-			// Use this button also to block robot motion while moving the scissor
-			vel.angular.x = 0.0;
-            vel.angular.y = 0.0;
-            vel.angular.z = 0.0;
-            vel.linear.x = 0.0;
-            vel.linear.y = 0.0;
-		}
-		else {
-			bRegisteredButtonEvent[button_home_]=false;
 		}
 
 		// TILT-MOVEMENTS (RELATIVE POS)
@@ -423,8 +398,10 @@ void RB1BasePad::padCallback(const sensor_msgs::Joy::ConstPtr& joy)
 
         // Publish 
 	// Only publishes if it's enabled
-	if(bEnable){
-        if (ptzEvent) ptz_pub_.publish(ptz);
+        // Publish only with deadman button pushed
+	// if(bEnable){
+        if (joy->buttons[dead_man_button_] == 1) {
+                if (ptzEvent) ptz_pub_.publish(ptz);
 		vel_pub_.publish(vel);
 		pub_command_freq->tick();
 		}
