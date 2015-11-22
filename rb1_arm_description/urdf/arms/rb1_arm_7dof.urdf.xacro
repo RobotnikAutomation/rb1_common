@@ -1,8 +1,6 @@
 <?xml version="1.0"?>
 <robot name="rb1_arm_7dof" xmlns:xacro="http://www.ros.org/wiki/xacro"> 
 
-	<!-- xacro:include filename="$(find rb1_arm_description)/urdf/arms/rb1_arm_7dof.gazebo.xacro" / -->
-
 	<xacro:property name="j1_mechanical_reduction" value="502.0"/>
 	<xacro:property name="j1_motor_torque_constant" value="50.0"/>
 	<xacro:property name="j2_mechanical_reduction" value="502.0"/>
@@ -51,11 +49,9 @@
     <xacro:property name="PI" value="3.1415926535897931"/>
 
     <!-- BASE_LINK -->
-    <link
+    <!-- link
       name="base_link_rb1_arm">
     </link>
-    
-		
 	<joint
 		  name="j1_rb1_arm"
 		  type="fixed">
@@ -68,10 +64,10 @@
 		  link="link01_rb1_arm" />
 		<axis
 		  xyz="0 0 0" />
-	</joint>
-	
+	</joint -->	
 	<!-- 01 -->
-	<link name="link01_rb1_arm">
+	<!-- link name="link01_rb1_arm" -->
+	<link name="base_link_rb1_arm">
 		<inertial>
 		  <mass value="0.506" />
 		  <origin xyz="-0.05161 0 -0.003" />
@@ -139,8 +135,10 @@
 		<origin
 		  xyz="0.0 0.0 0.0"
 		  rpy="0.0 0.0 0.0" />
+		<!-- parent
+		  link="link01_rb1_arm" / -->
 		<parent
-		  link="link01_rb1_arm" />
+		  link="base_link_rb1_arm" />  
 		<child
 		  link="motor01_rb1_arm" />
 		<axis
@@ -229,7 +227,8 @@
 		<origin
 			xyz="0 0 0"
 			rpy="0.0 0.0 0.0" />
-		<parent link="link01_rb1_arm" />	
+		<!-- parent link="link01_rb1_arm" /-->	
+		<parent link="base_link_rb1_arm" />		
 		<child link="link12_rb1_arm" />
 		<axis xyz="0 0 1" />
 		<limit effort="${joint_effort_limit_H54_200}" velocity="${joint_velocity_limit_H54_200}" upper="${j1_upper_limit}" lower="${j1_lower_limit}"/>
@@ -247,7 +246,7 @@
 		<motorTorqueConstant>${j1_motor_torque_constant}</motorTorqueConstant>
 	 </actuator>	 
     </transmission>
-    
+        
     <!-- JOINT 2 -->
 	<link name="link23_rb1_arm">
 		<inertial>
@@ -535,8 +534,6 @@
         rpy="0.0 0.0 0.0" />
 	  <parent link="link34_rb1_arm" />	
       <child link="link45_rb1_arm" />
-      <!-- check -->
-      <!-- xis xyz="0 0 -1" / -->
       <axis xyz="0 0 1"/>
       <limit effort="${joint_effort_limit_H54_100}" velocity="${joint_velocity_limit_H54_100}" upper="${j4_upper_limit}" lower="${j4_lower_limit}"/>
       <dynamics damping="${joint_damping}" friction="${joint_friction}"/>
@@ -739,8 +736,6 @@
         rpy="0.0 0.0 0.0" />
 	  <parent link="link56_rb1_arm" />	
       <child link="link67_rb1_arm" />
-      <!-- check -->
-      <!-- axis xyz="0 0 -1" / -->
       <axis xyz="0 0 1"/>
       <limit effort="${joint_effort_limit_L42}" velocity="${joint_velocity_limit_L42}" upper="${j6_upper_limit}" lower="${j6_lower_limit}"/>
       <dynamics damping="${joint_damping}" friction="${joint_friction}"/>
