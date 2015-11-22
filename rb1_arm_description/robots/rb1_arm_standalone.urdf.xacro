@@ -3,7 +3,7 @@
 
 	<!-- Used for fixing robot to Gazebo 'base_link' -->
 	<link name="world"/>
-	<joint name="fwf" type="fixed">
+	<joint name="fwf" type="fixed">		
 		<parent link="world"/>
 		<child link="base_link_rb1_arm"/>
 	</joint>
@@ -16,7 +16,8 @@
 
 	<!-- Import RB1 arm elements -->
 	<xacro:include filename="$(find rb1_arm_description)/urdf/arms/rb1_arm_7dof.urdf.xacro" />
-	
+	<xacro:include filename="$(find rb1_arm_description)/urdf/arms/rb1_arm_7dof.gazebo.xacro" />
+		
 	<xacro:include filename="$(find rb1_arm_description)/urdf/grippers/rb1_gripper_1.urdf.xacro" />
 
 	<!-- Joint elements -->
@@ -44,9 +45,9 @@
 	<xacro:property name="hq" value="true" />
 
 	<!-- RB-1 arm -->
-	<xacro:rb1_arm_7dof name="rb1_arm_7dof" hq="${hq}" />
+	<xacro:rb1_arm_7dof name="rb1" hq="${hq}" />
 
 	<!-- Gazebo ros control plugins -->
 	<xacro:ros_control/>
-
+	
 </robot>
