@@ -8,8 +8,6 @@
 
 	<!-- Import RB1 arm elements -->
 	<xacro:include filename="$(find rb1_torso_description)/urdf/rb1_torso_3dof.urdf.xacro" />
-	
-	<xacro:include filename="$(find rb1_torso_description)/urdf/rb1_torso_3dof.gazebo.xacro" />
 
 	<!-- Import all available sensors -->
 	<xacro:include filename="$(find robotnik_sensors)/urdf/all_sensors.urdf.xacro" />
@@ -26,14 +24,9 @@
 	<xacro:rb1_torso_3dof name="rb1_torso_3dof" hq="${hq}" />
 
 	<!-- Ixtion sensor in head -->
-	<!-- xacro:sensor_asus_xtion_pro name="xtion_head" parent="link2_head">		
-        <origin xyz="0.055 0.000 0.028" rpy="0 0 0"/>         
-    </xacro:sensor_asus_xtion_pro --> 
-   
-    <xacro:sensor_orbbec_astra name="orbbec_astra" parent="link2_head">        
-        <origin xyz="0.055 0.0125 0.028" rpy="0 0 0"/>
-    </xacro:sensor_orbbec_astra>  
-      
+	<xacro:sensor_asus_xtion_pro name="xtion_head" parent="link2_head">		
+        <origin xyz="0.055 0.000 0.028" rpy="0 0 0"/> 
+   </xacro:sensor_asus_xtion_pro> 
 
 	<!-- Gazebo ros control plugins -->
 	<!-- xacro:ros_control/ -->
