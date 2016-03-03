@@ -26,7 +26,7 @@
 	<xacro:include filename="$(find robotnik_sensors)/urdf/all_sensors.urdf.xacro" />
 
 	<!-- Import Mico Arm -->	
-	<xacro:include filename="$(find mico_description)/robots/mico_arm_3fg_summit_xl.urdf.xacro" />
+	<xacro:include filename="$(find mico_description)/robots/mico_arm_3fg_rb1.urdf.xacro" />
 	
 	<!-- Fix torso to base -->
 	<joint
