@@ -49,9 +49,12 @@
   <joint
 	  name="j_torso_arm"
       type="fixed">
-    <origin
+    <!-- origin
       xyz="0.055 0.0 0.0755"
-      rpy="0.0 0.0 0.0" />
+      rpy="0.0 0.0 0.0" / -->    
+    <origin
+      xyz="0.065 0.0 0.0755"
+      rpy="0.0 0.0 0.0" />    
     <parent
       link="link2_torso" />
     <child
