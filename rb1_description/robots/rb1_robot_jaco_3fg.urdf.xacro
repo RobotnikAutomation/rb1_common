@@ -49,11 +49,8 @@
   <joint
 	  name="j_torso_arm"
       type="fixed">
-    <!-- origin
-      xyz="0.055 0.0 0.0755"
-      rpy="0.0 0.0 0.0" / -->    
     <origin
-      xyz="0.065 0.0 0.0755"
+      xyz="0.055 0.0 0.0755"
       rpy="0.0 0.0 0.0" />    
     <parent
       link="link2_torso" />
@@ -70,6 +67,6 @@
   <!-- xacro:ros_control/ -->
   
   <!-- arm -->    
-  <xacro:jaco_arm  parent="arm_link_base"/>
+  <xacro:jaco_arm parent="arm_link_base"/>
 
 </robot>
