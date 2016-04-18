@@ -10,3 +10,7 @@ controller_list:
       - jaco_joint_4
       - jaco_joint_5
       - jaco_joint_6
+      - j1_torso
+      - j1_head
+      - j2_head
+
