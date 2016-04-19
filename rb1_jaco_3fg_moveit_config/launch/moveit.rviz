@@ -266,7 +266,7 @@ Visualization Manager:
         Goal State Color: 250; 128; 0
         Interactive Marker Size: 0.25
         Joint Violation Color: 255; 0; 255
-        Planning Group: arm
+        Planning Group: rb1_arm
         Query Goal State: true
         Query Start State: false
         Show Workspace: false
@@ -508,10 +508,10 @@ Visualization Manager:
         Z: 2.23518e-07
       Name: Current View
       Near Clip Distance: 0.01
-      Pitch: 0.684795
+      Pitch: 0.434795
       Target Frame: base_footprint
       Value: XYOrbit (rviz)
-      Yaw: 5.25497
+      Yaw: 4.67997
     Saved: ~
 Window Geometry:
   Displays:

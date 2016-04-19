@@ -79,10 +79,9 @@
         <joint name="jaco_joint_6" value="0" />
     </group_state>
     <!--VIRTUAL JOINT: Purpose: this element defines a virtual joint between a robot link and an external frame of reference (considered fixed with respect to the robot)-->
-    <virtual_joint name="virtual_joint" type="planar" parent_frame="odom_combined" child_link="base_footprint" />
+    <virtual_joint name="virtual_joint" type="planar" parent_frame="odom" child_link="base_footprint" />
     <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
     <disable_collisions link1="base_footprint" link2="base_link" reason="Adjacent" />
-    <disable_collisions link1="base_footprint" link2="front_cover_link" reason="Never" />
     <disable_collisions link1="base_footprint" link2="hokuyo_laser_link" reason="Never" />
     <disable_collisions link1="base_footprint" link2="imu_link" reason="Never" />
     <disable_collisions link1="base_footprint" link2="jaco_link_1" reason="Never" />
@@ -105,10 +104,8 @@
     <disable_collisions link1="base_footprint" link2="omni_back_wheel" reason="Never" />
     <disable_collisions link1="base_footprint" link2="omni_front_left_wheel" reason="Never" />
     <disable_collisions link1="base_footprint" link2="omni_front_right_wheel" reason="Never" />
-    <disable_collisions link1="base_footprint" link2="orbbec_astra_cam_link" reason="Never" />
     <disable_collisions link1="base_footprint" link2="orbbec_astra_head_cam_link" reason="Never" />
     <disable_collisions link1="base_footprint" link2="right_wheel" reason="Never" />
-    <disable_collisions link1="base_link" link2="front_cover_link" reason="Adjacent" />
     <disable_collisions link1="base_link" link2="hokuyo_laser_link" reason="Adjacent" />
     <disable_collisions link1="base_link" link2="imu_link" reason="Adjacent" />
     <disable_collisions link1="base_link" link2="jaco_link_1" reason="Never" />
@@ -117,45 +114,18 @@
     <disable_collisions link1="base_link" link2="jaco_link_4" reason="Never" />
     <disable_collisions link1="base_link" link2="jaco_link_5" reason="Never" />
     <disable_collisions link1="base_link" link2="jaco_link_base" reason="Never" />
-    <disable_collisions link1="base_link" link2="jaco_link_hand" reason="Never" />
     <disable_collisions link1="base_link" link2="left_wheel" reason="Adjacent" />
     <disable_collisions link1="base_link" link2="link1_guide" reason="Default" />
     <disable_collisions link1="base_link" link2="link1_head" reason="Never" />
     <disable_collisions link1="base_link" link2="link1_torso" reason="Adjacent" />
     <disable_collisions link1="base_link" link2="link2_cover" reason="Never" />
     <disable_collisions link1="base_link" link2="link2_head" reason="Never" />
-    <disable_collisions link1="base_link" link2="link2_torso" reason="Never" />
+    <disable_collisions link1="base_link" link2="link2_torso" reason="Default" />
     <disable_collisions link1="base_link" link2="omni_back_wheel" reason="Adjacent" />
     <disable_collisions link1="base_link" link2="omni_front_left_wheel" reason="Adjacent" />
     <disable_collisions link1="base_link" link2="omni_front_right_wheel" reason="Adjacent" />
-    <disable_collisions link1="base_link" link2="orbbec_astra_cam_link" reason="Adjacent" />
     <disable_collisions link1="base_link" link2="orbbec_astra_head_cam_link" reason="Never" />
     <disable_collisions link1="base_link" link2="right_wheel" reason="Adjacent" />
-    <disable_collisions link1="front_cover_link" link2="hokuyo_laser_link" reason="Never" />
-    <disable_collisions link1="front_cover_link" link2="imu_link" reason="Never" />
-    <disable_collisions link1="front_cover_link" link2="jaco_link_1" reason="Never" />
-    <disable_collisions link1="front_cover_link" link2="jaco_link_2" reason="Never" />
-    <disable_collisions link1="front_cover_link" link2="jaco_link_3" reason="Never" />
-    <disable_collisions link1="front_cover_link" link2="jaco_link_4" reason="Never" />
-    <disable_collisions link1="front_cover_link" link2="jaco_link_5" reason="Never" />
-    <disable_collisions link1="front_cover_link" link2="jaco_link_base" reason="Never" />
-    <disable_collisions link1="front_cover_link" link2="jaco_link_finger_1" reason="Never" />
-    <disable_collisions link1="front_cover_link" link2="jaco_link_finger_2" reason="Never" />
-    <disable_collisions link1="front_cover_link" link2="jaco_link_finger_3" reason="Never" />
-    <disable_collisions link1="front_cover_link" link2="jaco_link_hand" reason="Never" />
-    <disable_collisions link1="front_cover_link" link2="left_wheel" reason="Never" />
-    <disable_collisions link1="front_cover_link" link2="link1_guide" reason="Never" />
-    <disable_collisions link1="front_cover_link" link2="link1_head" reason="Never" />
-    <disable_collisions link1="front_cover_link" link2="link1_torso" reason="Never" />
-    <disable_collisions link1="front_cover_link" link2="link2_cover" reason="Never" />
-    <disable_collisions link1="front_cover_link" link2="link2_head" reason="Never" />
-    <disable_collisions link1="front_cover_link" link2="link2_torso" reason="Never" />
-    <disable_collisions link1="front_cover_link" link2="omni_back_wheel" reason="Never" />
-    <disable_collisions link1="front_cover_link" link2="omni_front_left_wheel" reason="Never" />
-    <disable_collisions link1="front_cover_link" link2="omni_front_right_wheel" reason="Never" />
-    <disable_collisions link1="front_cover_link" link2="orbbec_astra_cam_link" reason="Default" />
-    <disable_collisions link1="front_cover_link" link2="orbbec_astra_head_cam_link" reason="Never" />
-    <disable_collisions link1="front_cover_link" link2="right_wheel" reason="Never" />
     <disable_collisions link1="hokuyo_laser_link" link2="imu_link" reason="Never" />
     <disable_collisions link1="hokuyo_laser_link" link2="jaco_link_1" reason="Never" />
     <disable_collisions link1="hokuyo_laser_link" link2="jaco_link_2" reason="Never" />
@@ -163,7 +133,6 @@
     <disable_collisions link1="hokuyo_laser_link" link2="jaco_link_4" reason="Never" />
     <disable_collisions link1="hokuyo_laser_link" link2="jaco_link_5" reason="Never" />
     <disable_collisions link1="hokuyo_laser_link" link2="jaco_link_base" reason="Never" />
-    <disable_collisions link1="hokuyo_laser_link" link2="jaco_link_finger_1" reason="Never" />
     <disable_collisions link1="hokuyo_laser_link" link2="jaco_link_finger_2" reason="Never" />
     <disable_collisions link1="hokuyo_laser_link" link2="jaco_link_finger_3" reason="Never" />
     <disable_collisions link1="hokuyo_laser_link" link2="jaco_link_hand" reason="Never" />
@@ -177,7 +146,6 @@
     <disable_collisions link1="hokuyo_laser_link" link2="omni_back_wheel" reason="Never" />
     <disable_collisions link1="hokuyo_laser_link" link2="omni_front_left_wheel" reason="Never" />
     <disable_collisions link1="hokuyo_laser_link" link2="omni_front_right_wheel" reason="Never" />
-    <disable_collisions link1="hokuyo_laser_link" link2="orbbec_astra_cam_link" reason="Never" />
     <disable_collisions link1="hokuyo_laser_link" link2="orbbec_astra_head_cam_link" reason="Never" />
     <disable_collisions link1="hokuyo_laser_link" link2="right_wheel" reason="Never" />
     <disable_collisions link1="imu_link" link2="jaco_link_1" reason="Never" />
@@ -200,7 +168,6 @@
     <disable_collisions link1="imu_link" link2="omni_back_wheel" reason="Never" />
     <disable_collisions link1="imu_link" link2="omni_front_left_wheel" reason="Never" />
     <disable_collisions link1="imu_link" link2="omni_front_right_wheel" reason="Never" />
-    <disable_collisions link1="imu_link" link2="orbbec_astra_cam_link" reason="Never" />
     <disable_collisions link1="imu_link" link2="orbbec_astra_head_cam_link" reason="Never" />
     <disable_collisions link1="imu_link" link2="right_wheel" reason="Never" />
     <disable_collisions link1="jaco_link_1" link2="jaco_link_2" reason="Adjacent" />
@@ -208,17 +175,16 @@
     <disable_collisions link1="jaco_link_1" link2="jaco_link_4" reason="Never" />
     <disable_collisions link1="jaco_link_1" link2="jaco_link_5" reason="Never" />
     <disable_collisions link1="jaco_link_1" link2="jaco_link_base" reason="Adjacent" />
-    <disable_collisions link1="jaco_link_1" link2="jaco_link_hand" reason="Never" />
     <disable_collisions link1="jaco_link_1" link2="left_wheel" reason="Never" />
     <disable_collisions link1="jaco_link_1" link2="link1_guide" reason="Never" />
     <disable_collisions link1="jaco_link_1" link2="link1_head" reason="Never" />
     <disable_collisions link1="jaco_link_1" link2="link1_torso" reason="Never" />
     <disable_collisions link1="jaco_link_1" link2="link2_cover" reason="Never" />
     <disable_collisions link1="jaco_link_1" link2="link2_head" reason="Never" />
+    <disable_collisions link1="jaco_link_1" link2="link2_torso" reason="Never" />
     <disable_collisions link1="jaco_link_1" link2="omni_back_wheel" reason="Never" />
     <disable_collisions link1="jaco_link_1" link2="omni_front_left_wheel" reason="Never" />
     <disable_collisions link1="jaco_link_1" link2="omni_front_right_wheel" reason="Never" />
-    <disable_collisions link1="jaco_link_1" link2="orbbec_astra_cam_link" reason="Never" />
     <disable_collisions link1="jaco_link_1" link2="orbbec_astra_head_cam_link" reason="Never" />
     <disable_collisions link1="jaco_link_1" link2="right_wheel" reason="Never" />
     <disable_collisions link1="jaco_link_2" link2="jaco_link_3" reason="Adjacent" />
@@ -229,7 +195,6 @@
     <disable_collisions link1="jaco_link_2" link2="omni_back_wheel" reason="Never" />
     <disable_collisions link1="jaco_link_2" link2="omni_front_left_wheel" reason="Never" />
     <disable_collisions link1="jaco_link_2" link2="omni_front_right_wheel" reason="Never" />
-    <disable_collisions link1="jaco_link_2" link2="orbbec_astra_cam_link" reason="Never" />
     <disable_collisions link1="jaco_link_2" link2="right_wheel" reason="Never" />
     <disable_collisions link1="jaco_link_3" link2="jaco_link_4" reason="Adjacent" />
     <disable_collisions link1="jaco_link_3" link2="jaco_link_5" reason="Never" />
@@ -239,11 +204,9 @@
     <disable_collisions link1="jaco_link_3" link2="jaco_link_finger_3" reason="Never" />
     <disable_collisions link1="jaco_link_3" link2="jaco_link_hand" reason="Never" />
     <disable_collisions link1="jaco_link_3" link2="left_wheel" reason="Never" />
-    <disable_collisions link1="jaco_link_3" link2="link1_guide" reason="Never" />
     <disable_collisions link1="jaco_link_3" link2="omni_back_wheel" reason="Never" />
     <disable_collisions link1="jaco_link_3" link2="omni_front_left_wheel" reason="Never" />
     <disable_collisions link1="jaco_link_3" link2="omni_front_right_wheel" reason="Never" />
-    <disable_collisions link1="jaco_link_3" link2="orbbec_astra_cam_link" reason="Never" />
     <disable_collisions link1="jaco_link_3" link2="right_wheel" reason="Never" />
     <disable_collisions link1="jaco_link_4" link2="jaco_link_5" reason="Adjacent" />
     <disable_collisions link1="jaco_link_4" link2="jaco_link_base" reason="Never" />
@@ -252,11 +215,9 @@
     <disable_collisions link1="jaco_link_4" link2="jaco_link_finger_3" reason="Never" />
     <disable_collisions link1="jaco_link_4" link2="jaco_link_hand" reason="Never" />
     <disable_collisions link1="jaco_link_4" link2="left_wheel" reason="Never" />
-    <disable_collisions link1="jaco_link_4" link2="link1_guide" reason="Never" />
     <disable_collisions link1="jaco_link_4" link2="omni_back_wheel" reason="Never" />
     <disable_collisions link1="jaco_link_4" link2="omni_front_left_wheel" reason="Never" />
     <disable_collisions link1="jaco_link_4" link2="omni_front_right_wheel" reason="Never" />
-    <disable_collisions link1="jaco_link_4" link2="orbbec_astra_cam_link" reason="Never" />
     <disable_collisions link1="jaco_link_4" link2="right_wheel" reason="Never" />
     <disable_collisions link1="jaco_link_5" link2="jaco_link_base" reason="Never" />
     <disable_collisions link1="jaco_link_5" link2="jaco_link_finger_1" reason="Never" />
@@ -267,7 +228,6 @@
     <disable_collisions link1="jaco_link_5" link2="omni_back_wheel" reason="Never" />
     <disable_collisions link1="jaco_link_5" link2="omni_front_left_wheel" reason="Never" />
     <disable_collisions link1="jaco_link_5" link2="omni_front_right_wheel" reason="Never" />
-    <disable_collisions link1="jaco_link_5" link2="orbbec_astra_cam_link" reason="Never" />
     <disable_collisions link1="jaco_link_5" link2="right_wheel" reason="Never" />
     <disable_collisions link1="jaco_link_base" link2="left_wheel" reason="Never" />
     <disable_collisions link1="jaco_link_base" link2="link1_guide" reason="Never" />
@@ -279,7 +239,6 @@
     <disable_collisions link1="jaco_link_base" link2="omni_back_wheel" reason="Never" />
     <disable_collisions link1="jaco_link_base" link2="omni_front_left_wheel" reason="Never" />
     <disable_collisions link1="jaco_link_base" link2="omni_front_right_wheel" reason="Never" />
-    <disable_collisions link1="jaco_link_base" link2="orbbec_astra_cam_link" reason="Never" />
     <disable_collisions link1="jaco_link_base" link2="orbbec_astra_head_cam_link" reason="Never" />
     <disable_collisions link1="jaco_link_base" link2="right_wheel" reason="Never" />
     <disable_collisions link1="jaco_link_finger_1" link2="jaco_link_finger_2" reason="Never" />
@@ -295,7 +254,6 @@
     <disable_collisions link1="jaco_link_finger_2" link2="omni_back_wheel" reason="Never" />
     <disable_collisions link1="jaco_link_finger_2" link2="omni_front_left_wheel" reason="Never" />
     <disable_collisions link1="jaco_link_finger_2" link2="omni_front_right_wheel" reason="Never" />
-    <disable_collisions link1="jaco_link_finger_2" link2="orbbec_astra_cam_link" reason="Never" />
     <disable_collisions link1="jaco_link_finger_2" link2="right_wheel" reason="Never" />
     <disable_collisions link1="jaco_link_finger_3" link2="jaco_link_hand" reason="Adjacent" />
     <disable_collisions link1="jaco_link_finger_3" link2="left_wheel" reason="Never" />
@@ -307,7 +265,6 @@
     <disable_collisions link1="jaco_link_hand" link2="omni_back_wheel" reason="Never" />
     <disable_collisions link1="jaco_link_hand" link2="omni_front_left_wheel" reason="Never" />
     <disable_collisions link1="jaco_link_hand" link2="omni_front_right_wheel" reason="Never" />
-    <disable_collisions link1="jaco_link_hand" link2="orbbec_astra_cam_link" reason="Never" />
     <disable_collisions link1="jaco_link_hand" link2="right_wheel" reason="Never" />
     <disable_collisions link1="left_wheel" link2="link1_guide" reason="Never" />
     <disable_collisions link1="left_wheel" link2="link1_head" reason="Never" />
@@ -318,7 +275,6 @@
     <disable_collisions link1="left_wheel" link2="omni_back_wheel" reason="Never" />
     <disable_collisions link1="left_wheel" link2="omni_front_left_wheel" reason="Never" />
     <disable_collisions link1="left_wheel" link2="omni_front_right_wheel" reason="Never" />
-    <disable_collisions link1="left_wheel" link2="orbbec_astra_cam_link" reason="Never" />
     <disable_collisions link1="left_wheel" link2="orbbec_astra_head_cam_link" reason="Never" />
     <disable_collisions link1="left_wheel" link2="right_wheel" reason="Never" />
     <disable_collisions link1="link1_guide" link2="link1_head" reason="Never" />
@@ -329,7 +285,6 @@
     <disable_collisions link1="link1_guide" link2="omni_back_wheel" reason="Never" />
     <disable_collisions link1="link1_guide" link2="omni_front_left_wheel" reason="Never" />
     <disable_collisions link1="link1_guide" link2="omni_front_right_wheel" reason="Never" />
-    <disable_collisions link1="link1_guide" link2="orbbec_astra_cam_link" reason="Never" />
     <disable_collisions link1="link1_guide" link2="orbbec_astra_head_cam_link" reason="Never" />
     <disable_collisions link1="link1_guide" link2="right_wheel" reason="Never" />
     <disable_collisions link1="link1_head" link2="link1_torso" reason="Never" />
@@ -339,7 +294,6 @@
     <disable_collisions link1="link1_head" link2="omni_back_wheel" reason="Never" />
     <disable_collisions link1="link1_head" link2="omni_front_left_wheel" reason="Never" />
     <disable_collisions link1="link1_head" link2="omni_front_right_wheel" reason="Never" />
-    <disable_collisions link1="link1_head" link2="orbbec_astra_cam_link" reason="Never" />
     <disable_collisions link1="link1_head" link2="orbbec_astra_head_cam_link" reason="Default" />
     <disable_collisions link1="link1_head" link2="right_wheel" reason="Never" />
     <disable_collisions link1="link1_torso" link2="link2_cover" reason="Default" />
@@ -348,7 +302,6 @@
     <disable_collisions link1="link1_torso" link2="omni_back_wheel" reason="Never" />
     <disable_collisions link1="link1_torso" link2="omni_front_left_wheel" reason="Never" />
     <disable_collisions link1="link1_torso" link2="omni_front_right_wheel" reason="Never" />
-    <disable_collisions link1="link1_torso" link2="orbbec_astra_cam_link" reason="Never" />
     <disable_collisions link1="link1_torso" link2="orbbec_astra_head_cam_link" reason="Never" />
     <disable_collisions link1="link1_torso" link2="right_wheel" reason="Never" />
     <disable_collisions link1="link2_cover" link2="link2_head" reason="Never" />
@@ -356,33 +309,25 @@
     <disable_collisions link1="link2_cover" link2="omni_back_wheel" reason="Never" />
     <disable_collisions link1="link2_cover" link2="omni_front_left_wheel" reason="Never" />
     <disable_collisions link1="link2_cover" link2="omni_front_right_wheel" reason="Never" />
-    <disable_collisions link1="link2_cover" link2="orbbec_astra_cam_link" reason="Never" />
     <disable_collisions link1="link2_cover" link2="right_wheel" reason="Never" />
     <disable_collisions link1="link2_head" link2="link2_torso" reason="Never" />
     <disable_collisions link1="link2_head" link2="omni_back_wheel" reason="Never" />
     <disable_collisions link1="link2_head" link2="omni_front_left_wheel" reason="Never" />
     <disable_collisions link1="link2_head" link2="omni_front_right_wheel" reason="Never" />
-    <disable_collisions link1="link2_head" link2="orbbec_astra_cam_link" reason="Never" />
     <disable_collisions link1="link2_head" link2="orbbec_astra_head_cam_link" reason="Adjacent" />
     <disable_collisions link1="link2_head" link2="right_wheel" reason="Never" />
     <disable_collisions link1="link2_torso" link2="omni_back_wheel" reason="Never" />
     <disable_collisions link1="link2_torso" link2="omni_front_left_wheel" reason="Never" />
     <disable_collisions link1="link2_torso" link2="omni_front_right_wheel" reason="Never" />
-    <disable_collisions link1="link2_torso" link2="orbbec_astra_cam_link" reason="Never" />
     <disable_collisions link1="link2_torso" link2="right_wheel" reason="Never" />
     <disable_collisions link1="omni_back_wheel" link2="omni_front_left_wheel" reason="Never" />
     <disable_collisions link1="omni_back_wheel" link2="omni_front_right_wheel" reason="Never" />
-    <disable_collisions link1="omni_back_wheel" link2="orbbec_astra_cam_link" reason="Never" />
     <disable_collisions link1="omni_back_wheel" link2="orbbec_astra_head_cam_link" reason="Never" />
     <disable_collisions link1="omni_back_wheel" link2="right_wheel" reason="Never" />
     <disable_collisions link1="omni_front_left_wheel" link2="omni_front_right_wheel" reason="Never" />
-    <disable_collisions link1="omni_front_left_wheel" link2="orbbec_astra_cam_link" reason="Never" />
     <disable_collisions link1="omni_front_left_wheel" link2="orbbec_astra_head_cam_link" reason="Never" />
     <disable_collisions link1="omni_front_left_wheel" link2="right_wheel" reason="Never" />
-    <disable_collisions link1="omni_front_right_wheel" link2="orbbec_astra_cam_link" reason="Never" />
     <disable_collisions link1="omni_front_right_wheel" link2="orbbec_astra_head_cam_link" reason="Never" />
     <disable_collisions link1="omni_front_right_wheel" link2="right_wheel" reason="Never" />
-    <disable_collisions link1="orbbec_astra_cam_link" link2="orbbec_astra_head_cam_link" reason="Never" />
-    <disable_collisions link1="orbbec_astra_cam_link" link2="right_wheel" reason="Never" />
     <disable_collisions link1="orbbec_astra_head_cam_link" link2="right_wheel" reason="Never" />
 </robot>
