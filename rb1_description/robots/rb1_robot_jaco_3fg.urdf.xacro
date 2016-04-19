@@ -17,7 +17,8 @@
 	<!-- First we import all posible elements defined in the urdf.xacro files. All these elements are defined as macro:xacros -->
 
 	<!-- Import RB1 base -->
-	<xacro:include filename="$(find rb1_base_description)/robots/rb1_base_platform.urdf.xacro" />
+	<!-- xacro:include filename="$(find rb1_base_description)/robots/rb1_base_platform.urdf.xacro" / -->
+        <xacro:include filename="$(find rb1_base_description)/robots/rb1_base_platform_v0.urdf.xacro" />
 
 	<!-- Import RB1 torso -->
 	<xacro:include filename="$(find rb1_torso_description)/robots/rb1_torso.urdf.xacro" />
