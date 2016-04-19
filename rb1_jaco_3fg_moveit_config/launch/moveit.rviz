@@ -76,11 +76,6 @@ Visualization Manager:
             Alpha: 1
             Show Axes: false
             Show Trail: false
-          front_cover_link:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
           hokuyo_laser_link:
             Alpha: 1
             Show Axes: false
@@ -199,27 +194,6 @@ Visualization Manager:
             Show Axes: false
             Show Trail: false
             Value: true
-          orbbec_astra_cam_depth_frame:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-          orbbec_astra_cam_depth_optical_frame:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-          orbbec_astra_cam_link:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          orbbec_astra_cam_rgb_frame:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-          orbbec_astra_cam_rgb_optical_frame:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
           orbbec_astra_head_cam_depth_frame:
             Alpha: 1
             Show Axes: false
@@ -307,11 +281,6 @@ Visualization Manager:
             Alpha: 1
             Show Axes: false
             Show Trail: false
-          front_cover_link:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
           hokuyo_laser_link:
             Alpha: 1
             Show Axes: false
@@ -430,27 +399,6 @@ Visualization Manager:
             Show Axes: false
             Show Trail: false
             Value: true
-          orbbec_astra_cam_depth_frame:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-          orbbec_astra_cam_depth_optical_frame:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-          orbbec_astra_cam_link:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          orbbec_astra_cam_rgb_frame:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-          orbbec_astra_cam_rgb_optical_frame:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
           orbbec_astra_head_cam_depth_frame:
             Alpha: 1
             Show Axes: false
