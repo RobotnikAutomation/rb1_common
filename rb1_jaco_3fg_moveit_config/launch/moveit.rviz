@@ -221,7 +221,7 @@ Visualization Manager:
             Show Axes: false
             Show Trail: false
             Value: true
-        Loop Animation: true
+        Loop Animation: false
         Robot Alpha: 0.5
         Show Robot Collision: true
         Show Robot Visual: true
@@ -433,7 +433,7 @@ Visualization Manager:
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
-    Fixed Frame: odom_combined
+    Fixed Frame: base_footprint
     Frame Rate: 30
   Name: root
   Tools:
@@ -457,10 +457,10 @@ Visualization Manager:
         Z: 2.23518e-07
       Name: Current View
       Near Clip Distance: 0.01
-      Pitch: 0.489795
+      Pitch: -0.0152053
       Target Frame: base_footprint
       Value: XYOrbit (rviz)
-      Yaw: 5.87497
+      Yaw: 1.28997
     Saved: ~
 Window Geometry:
   Displays:

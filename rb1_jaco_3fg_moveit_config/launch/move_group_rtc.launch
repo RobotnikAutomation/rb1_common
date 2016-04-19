@@ -26,9 +26,9 @@
 
   <!-- if launch called for simulation with gazebo -->  
   <!-- CHECK -->
-  <remap if="$(arg simulation)" from="/joint_states" to="/rb1/joint_states" />
+  <!--remap if="$(arg simulation)" from="/joint_states" to="/rb1/joint_states" /-->
   <!-- if launch called for real robot -->
-  <remap unless="$(arg simulation)" from="/joint_states" to="/jaco_arm_driver/out/joint_state" />
+  <!--remap unless="$(arg simulation)" from="/joint_states" to="..." /-->
 
   <!-- Planning Functionality -->
   <include ns="move_group" file="$(find rb1_jaco_3fg_moveit_config)/launch/planning_pipeline.launch.xml">
