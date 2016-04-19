@@ -4,6 +4,7 @@ Panels:
     Name: Displays
     Property Tree Widget:
       Expanded:
+        - /Global Options1
         - /Status1
         - /MotionPlanning1
         - /MotionPlanning1/Scene Geometry1
@@ -432,7 +433,7 @@ Visualization Manager:
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
-    Fixed Frame: odom_combined
+    Fixed Frame: odom
     Frame Rate: 30
   Name: root
   Tools:
@@ -456,10 +457,10 @@ Visualization Manager:
         Z: 2.23518e-07
       Name: Current View
       Near Clip Distance: 0.01
-      Pitch: 0.434795
+      Pitch: 0.489795
       Target Frame: base_footprint
       Value: XYOrbit (rviz)
-      Yaw: 4.67997
+      Yaw: 5.87497
     Saved: ~
 Window Geometry:
   Displays:
