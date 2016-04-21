@@ -7,7 +7,5 @@ scale_pan: 1.0
 scale_tilt: 3.1416
 button_speed_up: 12
 button_speed_down: 14
-button_dead_man: 9
-button_output_1: 15
-button_output_2: 13
+button_dead_man_torso: 9
 cmd_topic:  /joint_commands
