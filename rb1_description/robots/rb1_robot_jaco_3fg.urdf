@@ -899,12 +899,14 @@
     <child link="base_link_rb1_torso"/>
     <axis xyz="0 0 0"/>
   </joint>
+  <!-- temporary offset - until home seq can be changed -->
+  <!-- 55 mm +X, 315 mm -Y, 100 mm +Z -->
   <!-- Fix arm to torso -->
   <joint name="j_torso_arm" type="fixed">
     <!-- origin
       xyz="0.055 0.0 0.0755"
       rpy="0.0 0.0 0.0" / -->
-    <origin rpy="0.0 0.0 0.0" xyz="0.355 0.0 0.0755"/>
+    <origin rpy="0.0 0.0 0.0" xyz="0.100 -0.315 0.1755"/>
     <parent link="link2_torso"/>
     <child link="arm_link_base"/>
     <axis xyz="0 0 0"/>
