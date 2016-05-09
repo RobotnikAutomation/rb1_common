@@ -7,7 +7,7 @@
 	<xacro:property name="PI" value="3.1415926535897931"/>  
 
 	<!-- Flag to select the high or low quality model -->
-	<xacro:property name="hq" value="true" />
+	<xacro:property name="hq" value="false" />
 
 
 	<!-- ***************** -->
@@ -47,8 +47,11 @@
   <joint
 	  name="j_torso_arm"
       type="fixed">
-    <origin
+    <!--origin
       xyz="0.055 0.0 0.0755"
+      rpy="0.0 0.0 0.0" / -->
+    <origin
+      xyz="0.055 0.0 0.010"
       rpy="0.0 0.0 0.0" />
     <parent
       link="link2_torso" />
