@@ -149,8 +149,11 @@
   <joint
 	name="j1_torso"
 	type="prismatic">
-	<origin
+	<!-- origin
       xyz="0.078 0 0.016" 
+      rpy="0.0 0.0 0.0" / --> 	
+	<origin
+      xyz="0.078 0 0.091" 
       rpy="0.0 0.0 0.0" />
 	<parent link="link1_torso" />	
     <child link="link2_torso" />
@@ -203,8 +206,11 @@
   <joint
 	  name="j11_rb1_torso"
       type="fixed">
-    <origin
+    <!--origin
       xyz="-0.164 0.0 0.064"
+      rpy="0.0 0.0 0.0" / -->
+    <origin
+      xyz="-0.164 0.0 0.0"
       rpy="0.0 0.0 0.0" />
     <parent
       link="link2_torso" />
@@ -248,8 +254,11 @@
   <joint
 	name="j1_head"
 	type="revolute">
-	<origin
+	<!-- origin
       xyz="0.055 0.0 0.686"
+      rpy="0.0 0.0 0.0" / -->
+	<origin
+      xyz="0.055 0.0 0.621"
       rpy="0.0 0.0 0.0" />
 	<parent link="link2_torso" />	
     <child link="link1_head" />
