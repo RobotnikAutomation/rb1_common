@@ -1,0 +1,30 @@
+controller_list:
+  - name: fake_rb1_arm_controller
+    joints:
+      - mico_joint_1
+      - mico_joint_2
+      - mico_joint_3
+      - mico_joint_4
+      - mico_joint_5
+      - mico_joint_6
+  - name: fake_rb1_arm_torso_controller
+    joints:
+      - j1_torso
+      - mico_joint_1
+      - mico_joint_2
+      - mico_joint_3
+      - mico_joint_4
+      - mico_joint_5
+      - mico_joint_6
+  - name: fake_rb1_head_controller
+    joints:
+      - j1_head
+      - j2_head
+  - name: fake_rb1_robot_controller
+    joints:
+      - mico_joint_1
+      - mico_joint_2
+      - mico_joint_3
+      - mico_joint_4
+      - mico_joint_5
+      - mico_joint_6
