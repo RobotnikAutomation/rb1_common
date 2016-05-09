@@ -205,7 +205,16 @@
     <disable_collisions link1="link1_guide" link2="link2_cover" reason="Never" />
     <disable_collisions link1="link1_guide" link2="link2_head" reason="Never" />
     <disable_collisions link1="link1_guide" link2="link2_torso" reason="Never" />
+    <disable_collisions link1="link1_guide" link2="mico_link_1" reason="User" />
+    <disable_collisions link1="link1_guide" link2="mico_link_2" reason="User" />
+    <disable_collisions link1="link1_guide" link2="mico_link_3" reason="User" />
+    <disable_collisions link1="link1_guide" link2="mico_link_4" reason="User" />
+    <disable_collisions link1="link1_guide" link2="mico_link_5" reason="User" />
     <disable_collisions link1="link1_guide" link2="mico_link_base" reason="Never" />
+    <disable_collisions link1="link1_guide" link2="mico_link_finger_1" reason="User" />
+    <disable_collisions link1="link1_guide" link2="mico_link_finger_2" reason="User" />
+    <disable_collisions link1="link1_guide" link2="mico_link_finger_3" reason="User" />
+    <disable_collisions link1="link1_guide" link2="mico_link_hand" reason="User" />
     <disable_collisions link1="link1_guide" link2="omni_back_wheel" reason="Never" />
     <disable_collisions link1="link1_guide" link2="omni_front_left_wheel" reason="Never" />
     <disable_collisions link1="link1_guide" link2="omni_front_right_wheel" reason="Never" />
@@ -224,10 +233,19 @@
     <disable_collisions link1="link1_head" link2="orbbec_astra_cam_link" reason="Never" />
     <disable_collisions link1="link1_head" link2="orbbec_astra_head_cam_link" reason="Default" />
     <disable_collisions link1="link1_head" link2="right_wheel" reason="Never" />
-    <disable_collisions link1="link1_torso" link2="link2_cover" reason="Default" />
+    <disable_collisions link1="link1_torso" link2="link2_cover" reason="Never" />
     <disable_collisions link1="link1_torso" link2="link2_head" reason="Never" />
     <disable_collisions link1="link1_torso" link2="link2_torso" reason="Adjacent" />
+    <disable_collisions link1="link1_torso" link2="mico_link_1" reason="User" />
+    <disable_collisions link1="link1_torso" link2="mico_link_2" reason="User" />
+    <disable_collisions link1="link1_torso" link2="mico_link_3" reason="User" />
+    <disable_collisions link1="link1_torso" link2="mico_link_4" reason="User" />
+    <disable_collisions link1="link1_torso" link2="mico_link_5" reason="User" />
     <disable_collisions link1="link1_torso" link2="mico_link_base" reason="Never" />
+    <disable_collisions link1="link1_torso" link2="mico_link_finger_1" reason="User" />
+    <disable_collisions link1="link1_torso" link2="mico_link_finger_2" reason="User" />
+    <disable_collisions link1="link1_torso" link2="mico_link_finger_3" reason="User" />
+    <disable_collisions link1="link1_torso" link2="mico_link_hand" reason="User" />
     <disable_collisions link1="link1_torso" link2="omni_back_wheel" reason="Never" />
     <disable_collisions link1="link1_torso" link2="omni_front_left_wheel" reason="Never" />
     <disable_collisions link1="link1_torso" link2="omni_front_right_wheel" reason="Never" />
@@ -236,6 +254,7 @@
     <disable_collisions link1="link1_torso" link2="right_wheel" reason="Never" />
     <disable_collisions link1="link2_cover" link2="link2_head" reason="Never" />
     <disable_collisions link1="link2_cover" link2="link2_torso" reason="Adjacent" />
+    <disable_collisions link1="link2_cover" link2="mico_link_1" reason="User" />
     <disable_collisions link1="link2_cover" link2="mico_link_base" reason="Never" />
     <disable_collisions link1="link2_cover" link2="omni_back_wheel" reason="Never" />
     <disable_collisions link1="link2_cover" link2="omni_front_left_wheel" reason="Never" />
@@ -251,11 +270,21 @@
     <disable_collisions link1="link2_head" link2="orbbec_astra_cam_link" reason="Never" />
     <disable_collisions link1="link2_head" link2="orbbec_astra_head_cam_link" reason="Adjacent" />
     <disable_collisions link1="link2_head" link2="right_wheel" reason="Never" />
+    <disable_collisions link1="link2_torso" link2="mico_link_1" reason="User" />
+    <disable_collisions link1="link2_torso" link2="mico_link_2" reason="User" />
+    <disable_collisions link1="link2_torso" link2="mico_link_3" reason="User" />
+    <disable_collisions link1="link2_torso" link2="mico_link_4" reason="User" />
+    <disable_collisions link1="link2_torso" link2="mico_link_5" reason="User" />
     <disable_collisions link1="link2_torso" link2="mico_link_base" reason="Adjacent" />
+    <disable_collisions link1="link2_torso" link2="mico_link_finger_1" reason="User" />
+    <disable_collisions link1="link2_torso" link2="mico_link_finger_2" reason="User" />
+    <disable_collisions link1="link2_torso" link2="mico_link_finger_3" reason="User" />
+    <disable_collisions link1="link2_torso" link2="mico_link_hand" reason="User" />
     <disable_collisions link1="link2_torso" link2="omni_back_wheel" reason="Never" />
     <disable_collisions link1="link2_torso" link2="omni_front_left_wheel" reason="Never" />
     <disable_collisions link1="link2_torso" link2="omni_front_right_wheel" reason="Never" />
     <disable_collisions link1="link2_torso" link2="orbbec_astra_cam_link" reason="Never" />
+    <disable_collisions link1="link2_torso" link2="orbbec_astra_head_cam_link" reason="User" />
     <disable_collisions link1="link2_torso" link2="right_wheel" reason="Never" />
     <disable_collisions link1="mico_link_1" link2="mico_link_2" reason="Adjacent" />
     <disable_collisions link1="mico_link_1" link2="mico_link_3" reason="Never" />
