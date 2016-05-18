@@ -51,6 +51,8 @@
 #define DEFAULT_SCALE_PAN		    2.0
 #define DEFAULT_SCALE_TILT          2.0
 
+#define ITERATIONS_AFTER_DEADMAN    3.0
+
 class RB1TorsoPad
 {
 	public:
@@ -179,6 +181,7 @@ void RB1TorsoPad::Update(){
 
 void RB1TorsoPad::padCallback(const sensor_msgs::Joy::ConstPtr& joy)
 {
+   static int send_iterations_after_dead_man;
 
 	sensor_msgs::JointState cmd;
 		
@@ -235,26 +238,21 @@ void RB1TorsoPad::padCallback(const sensor_msgs::Joy::ConstPtr& joy)
 
 	sus_joy_freq->tick();	// Ticks the reception of joy events
 
-    // Publish 
+    // Publish only with deadman button pushed
     if (joy->buttons[dead_man_button_] == 1) {                
+                send_iterations_after_dead_man = ITERATIONS_AFTER_DEADMAN;
 		cmd.header.stamp = ros::Time::now();
 		joint_command_pub_.publish(cmd);
 		pub_command_freq->tick();
 		}
-
-
-/*
-std_msgs/Header header
-  uint32 seq
-  time stamp
-  string frame_id
-string[] name
-float64[] position
-float64[] velocity
-float64[] effort
-*/
-
-
+    else { // send some 0 if deadman is released
+          if (send_iterations_after_dead_man >0) {
+                send_iterations_after_dead_man--;
+                cmd.header.stamp = ros::Time::now();
+                joint_command_pub_.publish(cmd);
+                pub_command_freq->tick();
+                }
+             }
 
 }
 
