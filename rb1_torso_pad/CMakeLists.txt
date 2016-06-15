@@ -32,10 +32,10 @@ find_package(catkin REQUIRED COMPONENTS
 # )
 
 ## Generate added messages and services with any dependencies listed here
-generate_messages(
-   DEPENDENCIES
-   nav_msgs robotnik_msgs sensor_msgs 
- )
+#generate_messages(
+#   DEPENDENCIES
+#   nav_msgs robotnik_msgs sensor_msgs 
+# )
 
 ###################################
 ## catkin specific configuration ##
@@ -77,7 +77,7 @@ SET(CMAKE_BUILD_TYPE Debug)
 ## Declare a cpp executable
 add_executable(rb1_torso_pad src/rb1_torso_pad.cpp)
 
-#add_dependencies(rb1_torso_pad rb1_torso_pad_generate_messages_cpp)
+add_dependencies(rb1_torso_pad robotnik_msgs_generate_messages_cpp)
 
 target_link_libraries(rb1_torso_pad
    ${catkin_LIBRARIES}
