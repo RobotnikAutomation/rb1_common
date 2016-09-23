@@ -6,7 +6,6 @@ project(rb1_description)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
   message_runtime
-  rb1_arm_description
   rb1_base_description
   rb1_torso_description
   std_msgs
@@ -86,7 +85,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES rb1_description
-#  CATKIN_DEPENDS message_runtime rb1_arm_description rb1_base_description rb1_torso_description std_msgs std_srvs tf
+#  CATKIN_DEPENDS message_runtime rb1_base_description rb1_torso_description std_msgs std_srvs tf
 #  DEPENDS system_lib
 )
 
