@@ -126,7 +126,7 @@ RB1TorsoPad::RB1TorsoPad()
 	nh_.param("axis_pan", axis_pan_, DEFAULT_AXIS_PAN);	
 	nh_.param("scale_pan", scale_pan_, DEFAULT_SCALE_PAN);
 	nh_.param("axis_tilt", axis_tilt_, DEFAULT_AXIS_TILT);	
-	nh_.param("axis_tilt", scale_tilt_, DEFAULT_SCALE_TILT);	
+	nh_.param("scale_tilt", scale_tilt_, DEFAULT_SCALE_TILT);	
 			
 	nh_.param("button_dead_man_torso", dead_man_button_, dead_man_button_);
 	nh_.param("button_speed_up", speed_up_button_, speed_up_button_);  
