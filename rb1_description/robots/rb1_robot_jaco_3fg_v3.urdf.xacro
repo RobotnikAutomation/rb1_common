@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<robot name="rb1" xmlns:xacro="http://www.ros.org/wiki/xacro"> 
+
+	<!-- ***************** -->
+	<!-- Global parameters -->
+	<!-- ***************** -->  
+	<xacro:property name="PI" value="3.1415926535897931"/>  
+
+	<!-- Flag to select the high or low quality model -->
+	<xacro:property name="hq" value="false" />
+
+
+	<!-- ***************** -->
+	<!-- Imported elements -->
+	<!-- ***************** -->
+	
+	<!-- First we import all posible elements defined in the urdf.xacro files. All these elements are defined as macro:xacros -->
+
+	<!-- Import RB1 base -->
+	<xacro:include filename="$(find rb1_base_description)/robots/rb1_base_platform_v3.urdf.xacro" />
+
+	<!-- Import RB1 torso -->
+	<xacro:include filename="$(find rb1_torso_description)/robots/rb1_torso.urdf.xacro" />
+    
+	<!-- Import all available sensors -->
+	<xacro:include filename="$(find robotnik_sensors)/urdf/all_sensors.urdf.xacro" />
+
+	<!-- Import Jaco Arm -->	
+	<xacro:include filename="$(find jaco_model)/urdf/jaco_arm.xacro" />
+	
+	<!-- Fix torso to base -->
+	<joint
+	  name="j_base_torso"
+      type="fixed">
+    <origin
+      xyz="-0.133 0.0 0.227"
+      rpy="0.0 0.0 0.0" />
+    <parent
+      link="base_link" />
+    <child
+      link="base_link_rb1_torso" />      
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+  <!-- Fix arm to torso -->
+  <joint
+	  name="j_torso_arm"
+      type="fixed">
+    <!--origin
+      xyz="0.055 0.0 0.0755"
+      rpy="0.0 0.0 0.0" / -->
+    <origin
+      xyz="0.055 0.0 0.010"
+      rpy="0.0 0.0 0.0" />
+    <parent
+      link="link2_torso" />
+    <child
+      link="arm_link_base" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link name="arm_link_base" />
+	
+  <!-- arm -->    
+  <xacro:jaco_arm parent="arm_link_base"/>
+	  
+	<!-- Gazebo ros control pluggins -->
+	<!-- xacro:ros_control/ -->
+	    
+
+</robot>
