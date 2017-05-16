@@ -26,11 +26,11 @@
 	<xacro:include filename="$(find robotnik_sensors)/urdf/all_sensors.urdf.xacro" />
 
 	<!-- Import Jaco Arm -->	
-	<xacro:include filename="$(find jaco_model)/urdf/jaco_arm.xacro" />
+	<xacro:include filename="$(find kinova_description)/urdf/j2n6s300.xacro" />
 	
 	<!-- Fix torso to base -->
 	<joint
-	  name="j_base_torso"
+	  name="base_torso_joint"
       type="fixed">
     <origin
       xyz="-0.133 0.0 0.227"
@@ -38,14 +38,14 @@
     <parent
       link="base_link" />
     <child
-      link="base_link_rb1_torso" />      
+      link="torso_base_link" />      
     <axis
       xyz="0 0 0" />
   </joint>
 
   <!-- Fix arm to torso -->
   <joint
-	  name="j_torso_arm"
+	  name="torso_arm_joint"
       type="fixed">
     <!--origin
       xyz="0.055 0.0 0.0755"
@@ -54,16 +54,15 @@
       xyz="0.055 0.0 0.010"
       rpy="0.0 0.0 0.0" />
     <parent
-      link="link2_torso" />
+      link="torso_slider_link" />
     <child
-      link="arm_link_base" />
+      link="torso_arm_link" />
     <axis
       xyz="0 0 0" />
   </joint>
-  <link name="arm_link_base" />
-	
+   <link name="torso_arm_link" />	
   <!-- arm -->    
-  <xacro:jaco_arm parent="arm_link_base"/>
+  <xacro:j2n6s300 base_parent="torso_arm_link"/>
 	  
 	<!-- Gazebo ros control pluggins -->
 	<!-- xacro:ros_control/ -->
