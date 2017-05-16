@@ -10,12 +10,12 @@
   <xacro:property name="joint_damping" value="0.5"/>
   <xacro:property name="joint_friction" value="0.5"/>
 
-  <xacro:property name="j1_torso_mechanical_reduction" value="320.0"/>
-  <xacro:property name="j1_torso_motor_torque_constant" value="1.0"/>
-  <xacro:property name="j1_head_mechanical_reduction" value="320.0"/>
-  <xacro:property name="j1_head_motor_torque_constant" value="1.0"/>
-  <xacro:property name="j2_head_mechanical_reduction" value="320.0"/>
-  <xacro:property name="j2_head_motor_torque_constant" value="1.0"/>
+  <xacro:property name="torso_slider_joint_mechanical_reduction" value="320.0"/>
+  <xacro:property name="torso_slider_joint_motor_torque_constant" value="1.0"/>
+  <xacro:property name="torso_head_pan_joint_mechanical_reduction" value="320.0"/>
+  <xacro:property name="torso_head_pan_joint_motor_torque_constant" value="1.0"/>
+  <xacro:property name="torso_head_tilt_joint_mechanical_reduction" value="320.0"/>
+  <xacro:property name="torso_head_tilt_joint_motor_torque_constant" value="1.0"/>
 
   <xacro:macro name="rb1_torso_3dof" params="name hq">
 
@@ -24,10 +24,10 @@
  
   <!-- BASE_LINK -->
   <link
-    name="base_link_rb1_torso">
+    name="torso_base_link">
   </link>		
   
-  <link name="link1_torso">
+  <link name="torso_link">
     <inertial>
       <mass value="3.0" />
       <origin xyz="0 0 0" />
@@ -58,20 +58,20 @@
   </link>
 
   <joint
-	  name="j0_rb1_torso"
+	  name="torso_joint"
       type="fixed">
     <origin
       xyz="0.0 0.0 0.0"
       rpy="0.0 0.0 0.0" />
     <parent
-      link="base_link_rb1_torso" />
+      link="torso_base_link" />
     <child
-      link="link1_torso" />
+      link="torso_link" />
     <axis
       xyz="0 0 0" />
   </joint>
 
-  <link name="link1_guide">
+  <link name="torso_guide_link">
     <inertial>
       <mass value="2.0" />
       <origin xyz="0 0 0" />
@@ -102,21 +102,21 @@
   </link>
 
   <joint
-	  name="j00_rb1_torso"
+	  name="torso_guide_joint"
       type="fixed">
     <origin
       xyz="0.0 0.0 0.0"
       rpy="0.0 0.0 0.0" />
     <parent
-      link="link1_torso" />
+      link="torso_link" />
     <child
-      link="link1_guide" />
+      link="torso_guide_link" />
     <axis
       xyz="0 0 0" />
   </joint>
 
 
-  <link name="link2_torso">
+  <link name="torso_slider_link">
     <inertial>
       <mass value="2.0" />
       <origin xyz="0 0 0" />
@@ -147,7 +147,7 @@
   </link>
 
   <joint
-	name="j1_torso"
+	name="torso_slider_joint"
 	type="prismatic">
 	<!-- origin
       xyz="0.078 0 0.016" 
@@ -155,25 +155,25 @@
 	<origin
       xyz="0.078 0 0.091" 
       rpy="0.0 0.0 0.0" />
-	<parent link="link1_torso" />	
-    <child link="link2_torso" />
+	<parent link="torso_link" />	
+    <child link="torso_slider_link" />
     <axis xyz="0 0 1" />
     <limit effort="${joint_effort_limit_torso}" velocity="${joint_velocity_limit_torso}" upper="${0.360}" lower="${0}"/>
     <dynamics damping="${joint_damping}" friction="${joint_friction}"/>
   </joint>
 
-  <transmission name="j1_torso_trans">
+  <transmission name="torso_slider_trans">
 	 <type>transmission_interface/SimpleTransmission</type>
-     <joint name="j1_torso">
+     <joint name="torso_slider_joint">
 		 <hardwareInterface>EffortJointInterface</hardwareInterface>
      </joint>
-     <actuator name="j1_torso_motor">	    
-        <mechanicalReduction>${j1_torso_mechanical_reduction}</mechanicalReduction>
-		<motorTorqueConstant>${j1_torso_motor_torque_constant}</motorTorqueConstant>
+     <actuator name="torso_slider_motor">	    
+        <mechanicalReduction>${torso_slider_joint_mechanical_reduction}</mechanicalReduction>
+		<motorTorqueConstant>${torso_slider_joint_motor_torque_constant}</motorTorqueConstant>
 	 </actuator>	 
   </transmission>
 
-  <link name="link2_cover">
+  <link name="torso_cover_link">
     <inertial>
       <mass value="1.0" />
       <origin xyz="0 0 0" />
@@ -204,7 +204,7 @@
   </link>
 
   <joint
-	  name="j11_rb1_torso"
+	  name="torso_cover_joint"
       type="fixed">
     <!--origin
       xyz="-0.164 0.0 0.064"
@@ -213,15 +213,15 @@
       xyz="-0.164 0.0 0.0"
       rpy="0.0 0.0 0.0" />
     <parent
-      link="link2_torso" />
+      link="torso_slider_link" />
     <child
-      link="link2_cover" />
+      link="torso_cover_link" />
     <axis
       xyz="0 0 0" />
   </joint>
 
 
-  <link name="link1_head">
+  <link name="torso_head_link">
     <inertial>
       <mass value="1.0" />
       <origin xyz="0 0 0" />
@@ -252,7 +252,7 @@
   </link>
 
   <joint
-	name="j1_head"
+	name="torso_head_pan_joint"
 	type="revolute">
 	<!-- origin
       xyz="0.055 0.0 0.686"
@@ -260,26 +260,26 @@
 	<origin
       xyz="0.055 0.0 0.621"
       rpy="0.0 0.0 0.0" />
-	<parent link="link2_torso" />	
-    <child link="link1_head" />
+	<parent link="torso_slider_link" />	
+    <child link="torso_head_link" />
     <axis xyz="0 0 1" />
     <limit effort="${joint_effort_limit}" velocity="${joint_velocity_limit}" upper="${PI/2}" lower="${-PI/2}"/>
     <dynamics damping="${joint_damping}" friction="${joint_friction}"/>
   </joint>
 
-  <transmission name="j1_head_trans">
+  <transmission name="torso_head_pan_trans">
 	 <type>transmission_interface/SimpleTransmission</type>
-     <joint name="j1_head">
+     <joint name="torso_head_pan_joint">
         <hardwareInterface>EffortJointInterface</hardwareInterface>
      </joint>     
-     <actuator name="j1_head_motor">
-        <mechanicalReduction>${j1_head_mechanical_reduction}</mechanicalReduction>
-		<motorTorqueConstant>${j1_head_motor_torque_constant}</motorTorqueConstant>
+     <actuator name="torso_head_pan_motor">
+        <mechanicalReduction>${torso_head_pan_joint_mechanical_reduction}</mechanicalReduction>
+		<motorTorqueConstant>${torso_head_pan_joint_motor_torque_constant}</motorTorqueConstant>
 	 </actuator>	 
   </transmission>
 
 
-  <link name="link2_head">
+  <link name="torso_head_tilt_link">
     <inertial>
       <mass value="1.0" />
       <origin xyz="0 0 0" />
@@ -311,13 +311,13 @@
 
 
   <joint
-	name="j2_head"
+	name="torso_head_tilt_joint"
 	type="revolute">
 	<origin
       xyz="0.081 0.0 0.0"
       rpy="0.0 0.0 0.0" />
-	<parent link="link1_head" />	
-    <child link="link2_head" />
+	<parent link="torso_head_link" />	
+    <child link="torso_head_tilt_link" />
     <!-- check -->
     <!-- axis xyz="0 1 0" / -->
     <axis xyz="0 -1 0"/>
@@ -325,14 +325,14 @@
     <dynamics damping="${joint_damping}" friction="${joint_friction}"/>
   </joint>
 
-  <transmission name="j2_head_trans">
+  <transmission name="torso_head_tilt_trans">
 	 <type>transmission_interface/SimpleTransmission</type>
-     <joint name="j2_head">
+     <joint name="torso_head_tilt_joint">
 		<hardwareInterface>EffortJointInterface</hardwareInterface>
 	 </joint>
-     <actuator name="j2_head_motor">	 
-        <mechanicalReduction>${j2_head_mechanical_reduction}</mechanicalReduction>
-		<motorTorqueConstant>${j2_head_motor_torque_constant}</motorTorqueConstant>
+     <actuator name="torso_head_tilt_motor">	 
+        <mechanicalReduction>${torso_head_tilt_joint_mechanical_reduction}</mechanicalReduction>
+		<motorTorqueConstant>${torso_head_tilt_joint_motor_torque_constant}</motorTorqueConstant>
 	 </actuator>	 
   </transmission>
 
