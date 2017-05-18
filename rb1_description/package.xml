@@ -23,7 +23,8 @@
   <run_depend>message_runtime</run_depend>
   <run_depend>rb1_base_description</run_depend>
   <run_depend>rb1_torso_description</run_depend>
-  <run_depend>mico_description</run_depend>
+  <run_depend>kinova_description</run_depend>
+  <run_depend>kinova_driver</run_depend>
   <run_depend>std_msgs</run_depend>
   <run_depend>std_srvs</run_depend>
   <run_depend>tf</run_depend>
