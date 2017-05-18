@@ -188,7 +188,7 @@ void RB1TorsoPad::padCallback(const sensor_msgs::Joy::ConstPtr& joy)
 	// Joints: j1_torso (linear in m/s) j1_head (pan in rad/s), j2_head (tilt in rad/s)
 	cmd.name.resize(3);
     //cmd.name[0] = "j1_torso"; cmd.name[1] = "j1_head"; cmd.name[2] = "j2_head";
-    cmd.name[0] = "torso_slider_joint"; cmd.name[1] = "torso_head_pan_joint"; cmd.name[2] = "torso_head_tilt_joint";
+    cmd.name[0] = "torso_slider_joint"; cmd.name[1] = "head_pan_joint"; cmd.name[2] = "head_tilt_joint";
     cmd.velocity.resize(3);
     cmd.velocity[0] = 0.0; cmd.velocity[1] = 0.0; cmd.velocity[2] = 0.0;
 
