@@ -1,3 +1,12 @@
 <launch>
+  <arg name="moveit_controller_manager"
+    default="moveit_simple_controller_manager/MoveItSimpleControllerManager"/>
+  
+  <!-- arg name="moveit_controller_manager" default="moveit_ros_control_interface::MoveItMultiControllerManager" /-->
+
+  <param name="moveit_controller_manager"
+         value="$(arg moveit_controller_manager)"/>
+
+  <rosparam file="$(find rb1_jaco_3fg_moveit_config)/config/controllers.yaml"/>
 
 </launch>

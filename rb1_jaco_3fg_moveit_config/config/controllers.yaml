@@ -4,13 +4,13 @@ controller_list:
     type: FollowJointTrajectory
     default: true
     joints:
-      - jaco_joint_1
-      - jaco_joint_2
-      - jaco_joint_3
-      - jaco_joint_4
-      - jaco_joint_5
-      - jaco_joint_6
-      - j1_torso
-      - j1_head
-      - j2_head
+      - arm_joint_1
+      - arm_joint_2
+      - arm_joint_3
+      - arm_joint_4
+      - arm_joint_5
+      - arm_joint_6
+      - torso_slider_joint
+      - head_pan_joint
+      - head_tilt_joint
 
