@@ -17,7 +17,7 @@
   <xacro:property name="head_tilt_joint_mechanical_reduction" value="320.0"/>
   <xacro:property name="head_tilt_joint_motor_torque_constant" value="1.0"/>
 
-  <xacro:macro name="rb1_torso_3dof" params="name hq">
+  <xacro:macro name="rb1_torso_3dof" params="hq">
 
   <!-- Robot mechanical and motor parameters -->
   <xacro:property name="PI" value="3.1415926535897931"/>

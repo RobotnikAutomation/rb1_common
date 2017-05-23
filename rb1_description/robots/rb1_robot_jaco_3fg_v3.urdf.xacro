@@ -20,7 +20,7 @@
 	<xacro:include filename="$(find rb1_base_description)/robots/rb1_base_platform_v3.urdf.xacro" />
 
 	<!-- Import RB1 torso -->
-	<xacro:include filename="$(find rb1_torso_description)/robots/rb1_torso.urdf.xacro" />
+	<xacro:include filename="$(find rb1_torso_description)/urdf/rb1_torso_3dof_v3.urdf.xacro" />
     
 	<!-- Import all available sensors -->
 	<xacro:include filename="$(find robotnik_sensors)/urdf/all_sensors.urdf.xacro" />
@@ -28,12 +28,19 @@
 	<!-- Import Jaco Arm -->	
 	<xacro:include filename="$(find kinova_description)/urdf/j2n6s300.xacro" />
 	
+ 
+
+    <!-- base is added automatically when including xacro -->
+
+    <!-- add torso -->
+    <xacro:rb1_torso_3dof hq="false"/>
+
 	<!-- Fix torso to base -->
 	<joint
 	  name="base_torso_joint"
       type="fixed">
     <origin
-      xyz="-0.133 0.0 0.227"
+      xyz="0.0 0.0 0.223"
       rpy="0.0 0.0 0.0" />
     <parent
       link="base_link" />
@@ -43,6 +50,13 @@
       xyz="0 0 0" />
   </joint>
 
+  <!-- add camera to head -->
+      <!-- RGBD sensor -->
+    <xacro:sensor_orbbec_astra name="head_camera" parent="head_tilt_link">
+        <origin xyz="0.055 0.0125 0.028" rpy="0 0 0"/>
+    </xacro:sensor_orbbec_astra>
+
+
   <!-- Fix arm to torso -->
   <joint
 	  name="torso_arm_joint"
@@ -51,7 +65,7 @@
       xyz="0.055 0.0 0.0755"
       rpy="0.0 0.0 0.0" / -->
     <origin
-      xyz="0.055 0.0 0.010"
+      xyz="0.0 0.0 0.075"
       rpy="0.0 0.0 0.0" />
     <parent
       link="torso_slider_link" />
