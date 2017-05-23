@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <launch>
 
-  <arg name="urdf_file" default="$(find xacro)/xacro.py '$(find rb1_torso_description)/robots/rb1_torso_standalone.urdf.xacro'" />
+  <arg name="urdf_file" default="$(find xacro)/xacro.py '$(find rb1_torso_description)/robots/rb1_torso_standalone_v3.urdf.xacro'" />
   <param name="robot_description" command="$(arg urdf_file)" />
 
   <!-- send fake joint values -->
