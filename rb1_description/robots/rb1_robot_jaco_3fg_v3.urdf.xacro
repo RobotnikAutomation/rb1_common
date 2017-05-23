@@ -18,6 +18,8 @@
 
 	<!-- Import RB1 base -->
 	<xacro:include filename="$(find rb1_base_description)/robots/rb1_base_platform_v3.urdf.xacro" />
+	
+	<xacro:include filename="$(find rb1_base_description)/urdf/others/tayg_box_6415.urdf.xacro" />
 
 	<!-- Import RB1 torso -->
 	<xacro:include filename="$(find rb1_torso_description)/robots/rb1_torso.urdf.xacro" />
@@ -63,7 +65,11 @@
    <link name="torso_arm_link" />	
   <!-- arm -->    
   <xacro:j2n6s300 base_parent="torso_arm_link"/>
-	  
+
+  <!-- box -->
+  <xacro:tayg_box parent="top_cover_link" prefix="base_">
+      <origin xyz="0.175024 0 0" rpy="0 0 0" />
+  </xacro:tayg_box>
 	<!-- Gazebo ros control pluggins -->
 	<!-- xacro:ros_control/ -->
 	    
