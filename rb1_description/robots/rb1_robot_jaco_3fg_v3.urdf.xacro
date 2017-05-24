@@ -82,7 +82,7 @@
 
   <!-- box -->
   <xacro:tayg_box parent="top_cover_link" prefix="base_">
-      <origin xyz="0.175024 0 0" rpy="0 0 0" />
+	     <origin xyz="0.175024 0 0.003" rpy="0 0 0" />
   </xacro:tayg_box>
 	<!-- Gazebo ros control pluggins -->
 	<!-- xacro:ros_control/ -->

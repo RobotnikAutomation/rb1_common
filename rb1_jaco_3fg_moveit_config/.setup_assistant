@@ -7,4 +7,4 @@ moveit_setup_assistant_config:
   CONFIG:
     author_name: Marc Bosch-Jorge
     author_email: mbosch@robotnik.es
-    generated_timestamp: 1495526916
+    generated_timestamp: 1495537795
