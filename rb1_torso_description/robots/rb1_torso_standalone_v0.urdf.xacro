@@ -26,7 +26,7 @@
 	<xacro:rb1_torso_3dof name="rb1_torso_3dof" hq="${hq}" />
 
 	<!-- Ixtion sensor in head -->
-	<xacro:sensor_asus_xtion_pro name="xtion_head" parent="link2_head">		
+	<xacro:sensor_asus_xtion_pro prefix="xtion_head" parent="link2_head">		
         <origin xyz="0.055 0.000 0.028" rpy="0 0 0"/> 
    </xacro:sensor_asus_xtion_pro> 
 

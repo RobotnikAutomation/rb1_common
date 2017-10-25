@@ -54,7 +54,7 @@
 
   <!-- add camera to head -->
       <!-- RGBD sensor -->
-    <xacro:sensor_orbbec_astra name="head_camera" parent="head_tilt_link">
+    <xacro:sensor_orbbec_astra prefix="head_camera" parent="head_tilt_link">
         <origin xyz="0.055 0.0125 0.028" rpy="0 0 0"/>
     </xacro:sensor_orbbec_astra>
 
