@@ -165,7 +165,7 @@
   <transmission name="torso_slider_trans">
 	 <type>transmission_interface/SimpleTransmission</type>
      <joint name="torso_slider_joint">
-		 <hardwareInterface>EffortJointInterface</hardwareInterface>
+		 <hardwareInterface>PositionJointInterface</hardwareInterface>
      </joint>
      <actuator name="torso_slider_motor">	    
         <mechanicalReduction>${torso_slider_joint_mechanical_reduction}</mechanicalReduction>
@@ -270,7 +270,7 @@
   <transmission name="head_pan_trans">
 	 <type>transmission_interface/SimpleTransmission</type>
      <joint name="head_pan_joint">
-        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <hardwareInterface>PositionJointInterface</hardwareInterface>
      </joint>     
      <actuator name="head_pan_motor">
         <mechanicalReduction>${head_pan_joint_mechanical_reduction}</mechanicalReduction>
@@ -328,7 +328,7 @@
   <transmission name="head_tilt_trans">
 	 <type>transmission_interface/SimpleTransmission</type>
      <joint name="head_tilt_joint">
-		<hardwareInterface>EffortJointInterface</hardwareInterface>
+		<hardwareInterface>PositionJointInterface</hardwareInterface>
 	 </joint>
      <actuator name="head_tilt_motor">	 
         <mechanicalReduction>${head_tilt_joint_mechanical_reduction}</mechanicalReduction>

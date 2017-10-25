@@ -117,7 +117,7 @@
   <transmission name="j1_torso_trans">
 	 <type>transmission_interface/SimpleTransmission</type>
      <joint name="j1_torso">
-		 <hardwareInterface>EffortJointInterface</hardwareInterface>
+		 <hardwareInterface>PositionJointInterface</hardwareInterface>
      </joint>
      <actuator name="j1_torso_motor">	    
         <mechanicalReduction>${j1_torso_mechanical_reduction}</mechanicalReduction>
@@ -171,7 +171,7 @@
   <transmission name="j1_head_trans">
 	 <type>transmission_interface/SimpleTransmission</type>
      <joint name="j1_head">
-        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <hardwareInterface>PositionJointInterface</hardwareInterface>
      </joint>     
      <actuator name="j1_head_motor">
         <mechanicalReduction>${j1_head_mechanical_reduction}</mechanicalReduction>
@@ -229,7 +229,7 @@
   <transmission name="j2_head_trans">
 	 <type>transmission_interface/SimpleTransmission</type>
      <joint name="j2_head">
-		<hardwareInterface>EffortJointInterface</hardwareInterface>
+		<hardwareInterface>PositionJointInterface</hardwareInterface>
 	 </joint>
      <actuator name="j2_head_motor">	 
         <mechanicalReduction>${j2_head_mechanical_reduction}</mechanicalReduction>
