@@ -3,7 +3,7 @@
 
 	<!-- ***************** -->
 	<!-- Imported elements -->
-	<!-- ***************** -->	
+	<!-- ***************** -->
 	<!-- First we import all posible elements defined in the urdf.xacro files. All these elements are defined as macro:xacros -->
 
 	<!-- Import RB1 arm elements -->
@@ -21,7 +21,7 @@
 	<xacro:property name="hq" value="false" />
 
 	<!-- RB-1 torso -->
-	<xacro:rb1_torso_3dof name="rb1_torso_3dof" hq="${hq}" />
+	<xacro:rb1_torso_3dof base_parent="rb1_base_link" hq="${hq}" />
 
 	<!-- Ixtion sensor in head -->
 	<!-- xacro:sensor_asus_xtion_pro name="xtion_head" parent="link2_head">		
@@ -29,7 +29,7 @@
     </xacro:sensor_asus_xtion_pro --> 
 
     <!-- RGBD sensor -->
-    <xacro:sensor_orbbec_astra name="head_camera" parent="head_tilt_link">
+    <xacro:sensor_orbbec_astra prefix="head_camera" parent="head_tilt_link" prefix_topic="head_rgbd_camera">
         <origin xyz="0.055 0.0125 0.028" rpy="0 0 0"/>
     </xacro:sensor_orbbec_astra>  
    

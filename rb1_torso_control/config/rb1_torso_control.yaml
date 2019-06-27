@@ -1,0 +1,19 @@
+rb1:
+  j1_torso_controller:
+    type: effort_controllers/JointPositionController    
+    joint: j1_torso
+    pid: {p: 100.0, i: 0.01, d: 100.0}
+
+  j1_head_controller:
+    type: effort_controllers/JointPositionController
+    joint: j1_head
+    pid: {p: 100.0, i: 0.01, d: 50.0}
+
+  j2_head_controller:
+    type: effort_controllers/JointPositionController
+    joint: j2_head
+    pid: {p: 100.0, i: 0.01, d: 50.0}
+
+  joint_read_state_controller:
+    type: joint_state_controller/JointStateController 
+    publish_rate: 100.0

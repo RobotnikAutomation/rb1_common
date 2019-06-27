@@ -18,7 +18,7 @@
 
 	<!-- Import RB1 base -->
 	<!-- xacro:include filename="$(find rb1_base_description)/robots/rb1_base_platform.urdf.xacro" / -->
-        <xacro:include filename="$(find rb1_base_description)/robots/rb1_base_platform_v0.urdf.xacro" />
+  	<xacro:include filename="$(find rb1_base_description)/robots/rb1_base_std.urdf.xacro" />
 
 	<!-- Import RB1 torso -->
 	<xacro:include filename="$(find rb1_torso_description)/robots/rb1_torso.urdf.xacro" />
@@ -28,51 +28,35 @@
 
 	<!-- Import Jaco Arm -->	
 	<!-- xacro:include filename="$(find mico_description)/robots/mico_arm_3fg_rb1.urdf.xacro" / -->
-	<xacro:include filename="$(find jaco_model)/urdf/jaco_arm.xacro" />
-		
+	<!--xacro:include filename="$(find jaco_model)/urdf/jaco_arm.xacro" /-->
+	<xacro:include filename="$(find kinova_description)/urdf/j2n6s300.xacro" />
+
 	<!-- Fix torso to base -->
-	<joint
-	  name="j_base_torso"
-      type="fixed">
-    <origin
-      xyz="-0.133 0.0 0.213"
-      rpy="0.0 0.0 0.0" />
-    <parent
-      link="base_link" />
-    <child
-      link="base_link_rb1_torso" />      
-    <axis
-      xyz="0 0 0" />
-  </joint>
+	<!--joint name="j_base_torso" type="fixed">
+    <origin xyz="-0.133 0.0 0.213" rpy="0.0 0.0 0.0" />
+    <parent link="base_link" />
+    <child link="base_link_rb1_torso" />      
+    <axis xyz="0 0 0" />
+  </joint-->
 
   <!-- temporary offset - until home seq can be changed -->
   <!-- 55 mm +X, 315 mm -Y, 100 mm +Z --> 
   
-  <!-- Fix arm to torso -->
-  <joint
-	  name="j_torso_arm"
-      type="fixed">
-    <!-- origin
-      xyz="0.055 0.0 0.0755"
-      rpy="0.0 0.0 0.0" / -->    
-    <origin
-      xyz="0.100 -0.315 0.1755"
-      rpy="0.0 0.0 0.0" />    
-    <parent
-      link="link2_torso" />
-    <child
-      link="arm_link_base" />
-    <axis
-      xyz="0 0 0" />
-  </joint>
+  <!-- Create link to fix arm to torso -->
+  <link name="link_torso_arm" />
   
-  <link name="arm_link_base">
-  </link>
+  <joint name="j_torso_arm" type="fixed">
+    <origin xyz="0.05 0.0 0.0" rpy="0.0 0.0 0.0" />    
+    <parent link="torso_slider_link" />
+    <child link="link_torso_arm" />
+    <axis xyz="0 0 0" />
+  </joint>
+
   
   <!-- Gazebo ros control pluggins -->
   <!-- xacro:ros_control/ -->
-  
-  <!-- arm -->    
-  <xacro:jaco_arm parent="arm_link_base"/>
+
+  <!-- Instance of Arm -->	
+  <xacro:j2n6s300 base_parent="link_torso_arm" />
 
 </robot>

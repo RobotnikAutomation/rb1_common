@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!-- load the controllers -->
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+    output="screen" ns="/rb1" args="--namespace=/rb1
+                      j1_torso_controller
+                      j1_head_controller
+                      j2_head_controller
+                      "/>
+
+  <!-- Load joint controller configurations from YAcd .ML file to parameter server -->
+  <rosparam file="$(find rb1_torso_control)/config/rb1_torso_control.yaml" command="load"/>
+
+  <!-- once the joint_state is published, run the robot_state_publisher, the namespace has to be adapted --> 
+  <!-- convert joint states to TF transforms for rviz, etc -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
+    respawn="false" output="screen">
+    <remap from="/joint_states" to="/rb1/joint_states" />
+  </node>
+
+</launch>
+
+ 
