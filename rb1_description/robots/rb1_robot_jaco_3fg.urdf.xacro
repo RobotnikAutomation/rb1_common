@@ -2,61 +2,76 @@
 <robot name="rb1" xmlns:xacro="http://www.ros.org/wiki/xacro"> 
 
 	<!-- ***************** -->
-	<!-- Global parameters -->
-	<!-- ***************** -->  
-	<xacro:property name="PI" value="3.1415926535897931"/>  
-
-	<!-- Flag to select the high or low quality model -->
-	<xacro:property name="hq" value="true" />
-
-
-	<!-- ***************** -->
 	<!-- Imported elements -->
 	<!-- ***************** -->
-	
-	<!-- First we import all posible elements defined in the urdf.xacro files. All these elements are defined as macro:xacros -->
 
 	<!-- Import RB1 base -->
-	<!-- xacro:include filename="$(find rb1_base_description)/robots/rb1_base_platform.urdf.xacro" / -->
-  	<xacro:include filename="$(find rb1_base_description)/robots/rb1_base_std.urdf.xacro" />
+  	<xacro:include filename="$(find rb1_base_description)/urdf/bases/rb1_base_platform_kinova.urdf.xacro" />
 
 	<!-- Import RB1 torso -->
-	<xacro:include filename="$(find rb1_torso_description)/robots/rb1_torso.urdf.xacro" />
+	<xacro:include filename="$(find rb1_torso_description)/urdf/rb1_torso_std.urdf.xacro" />
     
 	<!-- Import all available sensors -->
 	<xacro:include filename="$(find robotnik_sensors)/urdf/all_sensors.urdf.xacro" />
 
-	<!-- Import Jaco Arm -->	
-	<!-- xacro:include filename="$(find mico_description)/robots/mico_arm_3fg_rb1.urdf.xacro" / -->
-	<!--xacro:include filename="$(find jaco_model)/urdf/jaco_arm.xacro" /-->
+	<!-- Import jaco arm -->
 	<xacro:include filename="$(find kinova_description)/urdf/j2n6s300.xacro" />
 
-	<!-- Fix torso to base -->
-	<!--joint name="j_base_torso" type="fixed">
-    <origin xyz="-0.133 0.0 0.213" rpy="0.0 0.0 0.0" />
-    <parent link="base_link" />
-    <child link="base_link_rb1_torso" />      
-    <axis xyz="0 0 0" />
-  </joint-->
+    <!-- Import Gazebo Stuff -->
+    <xacro:include filename="$(find rb1_base_description)/urdf/common.gazebo.xacro" />
 
-  <!-- temporary offset - until home seq can be changed -->
-  <!-- 55 mm +X, 315 mm -Y, 100 mm +Z --> 
-  
-  <!-- Create link to fix arm to torso -->
-  <link name="link_torso_arm" />
-  
-  <joint name="j_torso_arm" type="fixed">
-    <origin xyz="0.05 0.0 0.0" rpy="0.0 0.0 0.0" />    
-    <parent link="torso_slider_link" />
-    <child link="link_torso_arm" />
-    <axis xyz="0 0 0" />
-  </joint>
+	<!-- ***************** -->
+	<!-- Global parameters -->
+	<!-- ***************** --> 
 
-  
-  <!-- Gazebo ros control pluggins -->
-  <!-- xacro:ros_control/ -->
+	<xacro:property name="PI" value="3.1415926535897931"/>  
+	<xacro:arg name="prefix" default="rb1_" />
 
-  <!-- Instance of Arm -->	
-  <xacro:j2n6s300 base_parent="link_torso_arm" />
+	<!-- Flag to select the high or low quality model -->
+	<xacro:property name="hq" value="true" />
+
+	<!-- ***************** -->
+	<!-- Gazebo ROS control-->
+	<!-- ***************** -->
+
+	<xacro:ros_control />
+	<xacro:gazebo_colors prefix="$(arg prefix)" />
+
+	<!-- ****************** -->
+	<!-- Instanced elements -->
+	<!-- ****************** -->
+
+	<!-- Instance rb1_base -->
+	<xacro:rb1_base prefix="$(arg prefix)" />
+	
+	<!-- Instance torso -->
+	<link name="torso_base_link" />
+	<xacro:rb1_torso base_parent="torso_base_link" />
+
+	<!-- Instance jaco arm -->
+	<link name="arm_base_link" />
+	<xacro:j2n6s300 base_parent="arm_base_link" />
+
+
+	<!-- ************* -->
+	<!-- Create joints -->
+	<!-- ************* -->
+
+	<!-- Fix torso to rb1_base -->
+    <joint name="j_base_torso" type="fixed">
+      <origin xyz="-0.133 0.0 0.213" rpy="0.0 0.0 0.0" />
+      <parent link="rb1_base_link" />
+      <child link="torso_base_link" />
+      <axis xyz="0 0 0" />
+    </joint>
+  
+	<!-- Fix arm to torso -->
+	<joint name="j_torso_arm" type="fixed">
+		<origin xyz="0.05 0.0 0.0" rpy="0.0 0.0 0.0" />    
+		<parent link="torso_slider_link" />
+		<child link="arm_base_link" />
+		<axis xyz="0 0 0" />
+	</joint>
+
 
 </robot>

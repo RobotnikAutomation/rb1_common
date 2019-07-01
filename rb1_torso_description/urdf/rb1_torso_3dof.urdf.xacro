@@ -19,18 +19,6 @@
 
     <!-- Robot mechanical and motor parameters -->
     <xacro:property name="PI" value="3.1415926535897931"/>
-  
-    <!-- BASE_LINK -->
-    <link name="torso_base_link">
-    </link>		
-
-    <!-- Fix torso to base -->
-    <joint name="j_base_torso" type="fixed">
-      <origin xyz="-0.133 0.0 0.213" rpy="0.0 0.0 0.0" />
-      <parent link="${base_parent}" />
-      <child link="torso_base_link" />
-      <axis xyz="0 0 0" />
-    </joint>
     
     <link name="torso_link">
       <inertial>
@@ -64,7 +52,7 @@
 
     <joint name="torso_joint" type="fixed">
       <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
-      <parent link="torso_base_link" />
+      <parent link="${base_parent}" />
       <child link="torso_link" />
       <axis xyz="0 0 0" />
     </joint>

@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<robot name="rb1_torso" xmlns:xacro="http://www.ros.org/wiki/xacro"> 
+
+	<!-- ***************** -->
+	<!-- Imported elements -->
+	<!-- ***************** -->
+
+	<!-- Import RB1 arm elements -->
+	<xacro:include filename="$(find rb1_torso_description)/urdf/rb1_torso_3dof.urdf.xacro" />
+
+	<!-- Import all available sensors -->
+	<xacro:include filename="$(find robotnik_sensors)/urdf/all_sensors.urdf.xacro" />
+	
+	<!-- rb1_torso with sensors-->
+	<xacro:macro name="rb1_torso" params="base_parent">
+
+		<!-- Robot mechanical and motor parameters -->
+		<xacro:property name="PI" value="3.1415926535897931"/>
+		<!-- Flag to select the high or low quality model -->
+		<xacro:property name="hq" value="false" />
+
+		<!-- rb1_torso -->
+		<xacro:rb1_torso_3dof base_parent="${base_parent}" hq="${hq}" />
+
+		<!-- RGBD sensor -->
+		<xacro:sensor_orbbec_astra prefix="head_camera" parent="head_tilt_link" prefix_topic="head_rgbd_camera">
+			<origin xyz="0.055 0.0125 0.028" rpy="0 0 0"/>
+		</xacro:sensor_orbbec_astra>
+		
+	</xacro:macro>
+</robot>
