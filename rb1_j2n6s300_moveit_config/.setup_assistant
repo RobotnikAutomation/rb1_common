@@ -1,0 +1,11 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: rb1_description
+    relative_path: robots/rb1_robot_jaco_3fg.urdf.xacro
+    xacro_args: --inorder
+  SRDF:
+    relative_path: config/rb1.srdf
+  CONFIG:
+    author_name: Jose Gómez
+    author_email: jgomez@robotnik.es
+    generated_timestamp: 1562152418
