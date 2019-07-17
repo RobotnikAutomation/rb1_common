@@ -7,7 +7,7 @@
   <arg name="sim" default="false"/>
   <arg name="cmd_vel" default="robotnik_base_control/cmd_vel"/>
   <arg name="id_robot" default="rb1"/>
-  <arg name="arm_name" default="j2n6s300"/>
+  <arg name="arm_name" default="j2s7s300"/>
   <arg name="prefix" default="rb1_"/>
   <arg name="launch_robot_localization" default="false"/>
   <arg name="has_elevator" default="false"/>

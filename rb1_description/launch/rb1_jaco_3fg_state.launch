@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <launch>
-  <arg name="version" default="rb1_robot_jaco_3fg.urdf.xacro" />
+  <arg name="version" default="rb1_robot_j2s7s300.urdf.xacro" />
   <arg name="prefix" default="rb1"/>
 
   <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find rb1_description)/robots/$(arg version)' prefix:=$(arg prefix)" />
