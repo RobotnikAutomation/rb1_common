@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(rb1_j2n6s300_moveit_config)
+project(rb1_j2s7s200_moveit_config)
 
 find_package(catkin REQUIRED)
 

@@ -1,12 +1,12 @@
 <package>
 
-  <name>rb1_j2n6s300_moveit_config</name>
+  <name>rb1_j2s7s200_moveit_config</name>
   <version>0.3.0</version>
   <description>
      An automatically generated package with all the configuration and launch files for using the rb1 with the MoveIt! Motion Planning Framework
   </description>
-  <author email="jgomez@robotnik.es">Jose Gómez</author>
-  <maintainer email="jgomez@robotnik.es">Jose Gómez</maintainer>
+  <author email="jgomez@robotnik.es">Jose Gómez Gadea</author>
+  <maintainer email="jgomez@robotnik.es">Jose Gómez Gadea</maintainer>
 
   <license>BSD</license>
 

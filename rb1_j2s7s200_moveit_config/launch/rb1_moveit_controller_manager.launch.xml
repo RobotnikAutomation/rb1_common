@@ -4,5 +4,5 @@
     <param name="moveit_controller_manager" value="$(arg moveit_controller_manager)" />
 
     <!-- load controller_list -->
-    <rosparam file="$(find rb1_j2n6s300_moveit_config)/config/ros_controllers.yaml" />
+    <rosparam file="$(find rb1_j2s7s200_moveit_config)/config/controllers.yaml" />
 </launch>

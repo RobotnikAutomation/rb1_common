@@ -10,6 +10,6 @@
 
    <param name="collision_detector" value="Hybrid" />
 
-   <rosparam command="load" file="$(find rb1_j2n6s300_moveit_config)/config/chomp_planning.yaml" />
+   <rosparam command="load" file="$(find rb1_j2s7s200_moveit_config)/config/chomp_planning.yaml" />
 
 </launch>
