@@ -1,84 +1,32 @@
-#rb1_torso:
-  j1_torso_controller:
-    type: effort_controllers/JointPositionController    
-    joint: torso_slider_joint
-    pid: {p: 1000.0, i: 1.0, d: 200.0}
+pantilt_joint_state_controller:
+  type:         joint_state_controller/JointStateController
+  publish_rate: 50
 
-  j1_head_controller:
-    type: effort_controllers/JointPositionController
-    joint: head_pan_joint
-    pid: {p: 100.0, i: 0.01, d: 50.0}
+pantilt_position_joint_trajectory_controller:
+  type: effort_controllers/JointTrajectoryController
+  joints:
+    - head_pan_joint
+    - head_tilt_joint
+  constraints:
+    goal_time: 5.0
+    head_pan_joint:
+        trajectory: 0.60
+        goal:       0.15
+    head_tilt_joint:
+        trajectory: 0.60
+        goal:       0.15
 
-  j2_head_controller:
-    type: effort_controllers/JointPositionController
-    joint: head_tilt_joint
-    pid: {p: 100.0, i: 0.01, d: 50.0}
+j1_torso_controller:
+  type: effort_controllers/JointPositionController    
+  joint: torso_slider_joint
+  pid: {p: 1000.0, i: 1.0, d: 200.0}
 
-#rb1_arm:
-  # jaco Arm  
-  j1_position_controller:
-    type: effort_controllers/JointPositionController
-    joint: arm_joint_1
-    pid: {p: 350.0, i: 20.0, d: 5.0, i_clamp: 5.0}
+j1_head_controller:
+  type: effort_controllers/JointPositionController
+  joint: head_pan_joint
+  pid: {p: 100.0, i: 0.01, d: 50.0}
 
-  j2_position_controller:
-    type: effort_controllers/JointPositionController
-    joint: arm_joint_2
-    pid: {p: 1500.0, i: 250.0, d: 10.0, i_clamp: 300.0}
-  
-  j3_position_controller:
-    type: effort_controllers/JointPositionController
-    joint: arm_joint_3
-    pid: {p: 700.0, i: 30, d: 10.0, i_clamp: 30.0}
-
-  j4_position_controller:
-    type: effort_controllers/JointPositionController
-    joint: arm_joint_4
-    pid: {p: 500.0, i: 20, d: 10.0, i_clamp: 10.0 }
-
-  jf1_position_controller:
-    type: effort_controllers/JointPositionController
-    joint: arm_joint_finger_1
-    pid: {p: 100.0, i: 0.1, d: 10.0}
-    
-  jf2_position_controller:
-    type: effort_controllers/JointPositionController
-    joint: arm_joint_finger_2
-    pid: {p: 100.0, i: 0.1, d: 10.0}
-
-  jf3_position_controller:
-    type: effort_controllers/JointPositionController
-    joint: arm_joint_finger_3
-    pid: {p: 100.0, i: 0.1, d: 10.0}
-
-  jaco_arm_controller:
-    type: "effort_controllers/JointTrajectoryController"
-    joints:
-      - arm_joint_1
-      - arm_joint_2
-      - arm_joint_3
-      - arm_joint_4
-
-    gains: # Required because we're controlling an effort interface
-
-      arm_joint_1: {p: 350, d: 20, i: 5, i_clamp: 5}
-      arm_joint_2: {p: 800, d: 30, i: 20, i_clamp: 20}
-      arm_joint_3: {p: 700, d: 30, i: 20, i_clamp: 20}
-      arm_joint_4: {p: 500, d: 20, i: 10, i_clamp: 10}
-
-
-  gripper_controller:
-    # Unfortunately this controller type works only for grippers with a single joint :( 
-    #type: "effort_controllers/GripperActionController"
-    type: "effort_controllers/JointTrajectoryController"
-    joints:
-      - arm_joint_finger_1
-      - arm_joint_finger_2
-      - arm_joint_finger_3
-    
-    gains:
-    
-      arm_joint_finger_1: {p: 500.0, d: 20, i: 10, i_clamp: 10.0}
-      arm_joint_finger_2: {p: 500.0, d: 20, i: 10, i_clamp: 10.0}
-      arm_joint_finger_3: {p: 500.0, d: 20, i: 10, i_clamp: 10.0}
-
+j2_head_controller:
+  type: effort_controllers/JointPositionController
+  joint: head_tilt_joint
+  pid: {p: 100.0, i: 0.01, d: 50.0}

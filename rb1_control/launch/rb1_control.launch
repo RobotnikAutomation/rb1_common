@@ -1,9 +1,6 @@
 <?xml version="1.0"?>
 <launch>
 
-  <!-- Load joint controller configurations from YAcd .ML file to parameter server -->
-  <rosparam file="$(find rb1_control)/config/rb1_control.yaml" command="load"/>
-
   <arg name="sim" default="false"/>
   <arg name="cmd_vel" default="robotnik_base_control/cmd_vel"/>
   <arg name="id_robot" default="rb1"/>
@@ -23,10 +20,13 @@
 			<arg name="launch_robot_localization" value="$(arg launch_robot_localization)"/>
 			<arg name="has_elevator" value="$(arg has_elevator)"/>
 		</include>
+  
+  <!-- Load joint controller configurations from YAcd .ML file to parameter server -->
+  <rosparam file="$(find rb1_control)/config/rb1_control.yaml" command="load"/>
 
   <!-- load the torso controllers -->
   <node name="torso_controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
-    output="screen" ns="/rb1" args="--namespace=/rb1
+    output="screen" args="
                       j1_torso_controller
 
                       j1_head_controller
@@ -54,12 +54,12 @@
                       joint_right_velocity_controller                      
 -->
 
-  <!-- Load arm controller -->
+  <!-- Load Gazebo arm controller -->
   <!-- Kinova -->
-  <include file="$(find kinova_gazebo)/launch/arm_launch.launch">
+  <!--include file="$(find kinova_gazebo)/launch/arm_launch.launch">
     <arg name="kinova_robotType" value="$(arg arm_name)"/>
     <arg name="kinova_robotName" value="$(arg id_robot)"/>
-  </include>
+  </include-->
 
   <!-- once the joint_state is published, run the robot_state_publisher, the namespace has to be adapted --> 
   <!-- convert joint states to TF transforms for rviz, etc -->

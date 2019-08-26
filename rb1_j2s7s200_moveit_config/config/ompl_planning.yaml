@@ -147,7 +147,7 @@ j2s7s200_arm:
     - SPARS
     - SPARStwo
 j2s7s200_gripper:
-  default_planner_config: None
+  default_planner_config: ""
   planner_configs:
     - SBL
     - EST
