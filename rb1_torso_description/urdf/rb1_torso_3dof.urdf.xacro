@@ -136,21 +136,37 @@
       <origin xyz="0.07 0 0.091" rpy="0.0 0.0 0.0" />
       <parent link="torso_link" />	
       <child link="torso_slider_link" />
-      <axis xyz="0 0 1" />
-      <limit effort="${joint_effort_limit_torso}" velocity="${joint_velocity_limit_torso}" upper="${0.360}" lower="${0}"/>
+      <axis xyz="0 0 -1" />
+      <limit effort="${joint_effort_limit_torso}" velocity="${joint_velocity_limit_torso}" upper="${0}" lower="${-0.37}"/>
       <dynamics damping="${joint_damping}" friction="${joint_friction}"/>
     </joint>
 
     <transmission name="torso_slider_trans">
-    <type>transmission_interface/SimpleTransmission</type>
+      <type>transmission_interface/SimpleTransmission</type>
       <joint name="torso_slider_joint">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       </joint>
-      <actuator name="torso_slider_motor">	    
-          <mechanicalReduction>${torso_slider_joint_mechanical_reduction}</mechanicalReduction>
-      <motorTorqueConstant>${torso_slider_joint_motor_torque_constant}</motorTorqueConstant>
-    </actuator>	 
+      
+      <actuator name="torso_slider_motor"> 
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>${torso_slider_joint_mechanical_reduction}</mechanicalReduction>
+        <motorTorqueConstant>${torso_slider_joint_motor_torque_constant}</motorTorqueConstant>
+      </actuator>	 
     </transmission>
+
+    <!--joint
+      name="torso_slider_joint"
+        type="fixed">
+      <origin
+        xyz="0.07 0 0.091"
+        rpy="0.0 0.0 0.0" />
+      <parent
+        link="torso_link" />
+      <child
+        link="torso_slider_link" />
+      <axis
+        xyz="0 0 0" />
+    </joint-->
 
     <link name="torso_cover_link">
       <inertial>
@@ -230,15 +246,31 @@
     </joint>
 
     <transmission name="head_pan_trans">
-    <type>transmission_interface/SimpleTransmission</type>
-      <joint name="head_pan_joint">
+      <type>transmission_interface/SimpleTransmission</type>
+        <joint name="head_pan_joint">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+
+        <actuator name="head_pan_motor">
           <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-      </joint>     
-      <actuator name="head_pan_motor">
           <mechanicalReduction>${head_pan_joint_mechanical_reduction}</mechanicalReduction>
-      <motorTorqueConstant>${head_pan_joint_motor_torque_constant}</motorTorqueConstant>
-    </actuator>	 
+          <motorTorqueConstant>${head_pan_joint_motor_torque_constant}</motorTorqueConstant>
+      </actuator>	 
     </transmission>
+
+    <!--joint
+      name="head_pan_joint"
+        type="fixed">
+      <origin
+        xyz="0.055 0.0 0.621"
+        rpy="0.0 0.0 0.0" />
+      <parent
+        link="torso_slider_link" />
+      <child
+        link="head_link" />
+      <axis
+        xyz="0 0 0" />
+    </joint-->
 
 
     <link name="head_tilt_link">
@@ -276,21 +308,37 @@
       <origin xyz="0.081 0.0 0.0" rpy="0.0 0.0 0.0" />
       <parent link="head_link" />	
       <child link="head_tilt_link" />
-      <axis xyz="0 -1 0"/>
+      <axis xyz="0 1 0"/>
       <limit effort="${joint_effort_limit}" velocity="${joint_velocity_limit}" upper="${PI/4}" lower="${-PI/4}"/>
       <dynamics damping="${joint_damping}" friction="${joint_friction}"/>
     </joint>
 
     <transmission name="head_tilt_trans">
-    <type>transmission_interface/SimpleTransmission</type>
-      <joint name="head_tilt_joint">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-    </joint>
-      <actuator name="head_tilt_motor">	 
-          <mechanicalReduction>${head_tilt_joint_mechanical_reduction}</mechanicalReduction>
-      <motorTorqueConstant>${head_tilt_joint_motor_torque_constant}</motorTorqueConstant>
-    </actuator>	 
+      <type>transmission_interface/SimpleTransmission</type>
+        <joint name="head_tilt_joint">
+          <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+
+        <actuator name="head_tilt_motor">	 
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>${head_tilt_joint_mechanical_reduction}</mechanicalReduction>
+        <motorTorqueConstant>${head_tilt_joint_motor_torque_constant}</motorTorqueConstant>
+      </actuator>	 
     </transmission>
+
+    <!--joint
+      name="head_tilt_joint"
+        type="fixed">
+      <origin
+        xyz="0.081 0.0 0.0"
+        rpy="0.0 0.0 0.0" />
+      <parent
+        link="head_link" />
+      <child
+        link="head_tilt_link" />
+      <axis
+        xyz="0 0 0" />
+    </joint-->
 
   </xacro:macro>
 </robot>

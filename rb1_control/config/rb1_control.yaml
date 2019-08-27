@@ -7,14 +7,6 @@ pantilt_position_joint_trajectory_controller:
   joints:
     - head_pan_joint
     - head_tilt_joint
-  constraints:
-    goal_time: 5.0
-    head_pan_joint:
-        trajectory: 0.60
-        goal:       0.15
-    head_tilt_joint:
-        trajectory: 0.60
-        goal:       0.15
 
 j1_torso_controller:
   type: effort_controllers/JointPositionController    
