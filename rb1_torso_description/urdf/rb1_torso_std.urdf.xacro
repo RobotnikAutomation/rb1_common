@@ -23,7 +23,7 @@
 		<xacro:rb1_torso_3dof base_parent="${base_parent}" hq="${hq}" />
 
 		<!-- RGBD sensor -->
-		<xacro:sensor_orbbec_astra prefix="head_camera" parent="head_tilt_link" prefix_topic="head_rgbd_camera">
+		<xacro:sensor_orbbec_astra prefix="rb1_torso_rgbd_camera" parent="head_tilt_link" prefix_topic="head_rgbd_camera">
 			<origin xyz="0.055 0.0125 0.028" rpy="0 0 0"/>
 		</xacro:sensor_orbbec_astra>
 		

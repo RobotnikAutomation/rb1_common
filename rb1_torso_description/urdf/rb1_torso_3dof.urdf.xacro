@@ -136,8 +136,8 @@
       <origin xyz="0.07 0 0.091" rpy="0.0 0.0 0.0" />
       <parent link="torso_link" />	
       <child link="torso_slider_link" />
-      <axis xyz="0 0 -1" />
-      <limit effort="${joint_effort_limit_torso}" velocity="${joint_velocity_limit_torso}" upper="${0}" lower="${-0.37}"/>
+      <axis xyz="0 0 1" />
+      <limit effort="${joint_effort_limit_torso}" velocity="${joint_velocity_limit_torso}" upper="${0.3645}" lower="${0}"/>
       <dynamics damping="${joint_damping}" friction="${joint_friction}"/>
     </joint>
 
