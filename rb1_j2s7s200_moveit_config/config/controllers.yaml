@@ -18,3 +18,16 @@ controller_list:
     joints:
       - j2s7s200_joint_finger_1
       - j2s7s200_joint_finger_2
+  - name: j2s7s200_with_torso
+    action_ns: follow_joint_trajectory
+    type: FollowJointTrajectory
+    default: true
+    joints:
+      - torso_slider_joint
+      - j2s7s200_joint_1
+      - j2s7s200_joint_2
+      - j2s7s200_joint_3
+      - j2s7s200_joint_4
+      - j2s7s200_joint_5
+      - j2s7s200_joint_6
+      - j2s7s200_joint_7

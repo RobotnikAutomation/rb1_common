@@ -1,34 +1,34 @@
-rb1:
 # MoveIt-specific simulation settings
-  moveit_sim_hw_interface:
-    joint_model_group: controllers_initial_group_
-    joint_model_group_pose: controllers_initial_pose_
+moveit_sim_hw_interface:
+  joint_model_group: controllers_initial_group_
+  joint_model_group_pose: controllers_initial_pose_
 # Settings for ros_control control loop
-  generic_hw_control_loop:
-    loop_hz: 300
-    cycle_time_error_threshold: 0.01
+generic_hw_control_loop:
+  loop_hz: 300
+  cycle_time_error_threshold: 0.01
 # Settings for ros_control hardware interface
-  hardware_interface:
-    joints:
-      - j2s7s200_joint_1
-      - j2s7s200_joint_2
-      - j2s7s200_joint_3
-      - j2s7s200_joint_4
-      - j2s7s200_joint_5
-      - j2s7s200_joint_6
-      - j2s7s200_joint_7
-      - j2s7s200_joint_finger_1
-      - j2s7s200_joint_finger_2
-    sim_control_mode: 1  # 0: position, 1: velocity
+hardware_interface:
+  joints:
+    - j2s7s200_joint_1
+    - j2s7s200_joint_2
+    - j2s7s200_joint_3
+    - j2s7s200_joint_4
+    - j2s7s200_joint_5
+    - j2s7s200_joint_6
+    - j2s7s200_joint_7
+    - j2s7s200_joint_finger_1
+    - j2s7s200_joint_finger_2
+  sim_control_mode: 1  # 0: position, 1: velocity
 # Publish all joint states
 # Creates the /joint_states topic necessary in ROS
-  joint_state_controller:
-    type: joint_state_controller/JointStateController
-    publish_rate: 50
-  controller_list:
-    []
-  j2s7s200_arm_controller:
-    type: effort_controllers/JointTrajectoryController
+joint_state_controller:
+  type: joint_state_controller/JointStateController
+  publish_rate: 50
+controller_list:
+  - name: j2s7s200_arm_controller
+    action_ns: follow_joint_trajectory
+    default: True
+    type: FollowJointTrajectory
     joints:
       - j2s7s200_joint_1
       - j2s7s200_joint_2
@@ -37,61 +37,23 @@ rb1:
       - j2s7s200_joint_5
       - j2s7s200_joint_6
       - j2s7s200_joint_7
-    gains:
-      j2s7s200_joint_1:
-        p: 100
-        d: 1
-        i: 1
-        i_clamp: 1
-      j2s7s200_joint_2:
-        p: 100
-        d: 1
-        i: 1
-        i_clamp: 1
-      j2s7s200_joint_3:
-        p: 100
-        d: 1
-        i: 1
-        i_clamp: 1
-      j2s7s200_joint_4:
-        p: 100
-        d: 1
-        i: 1
-        i_clamp: 1
-      j2s7s200_joint_5:
-        p: 100
-        d: 1
-        i: 1
-        i_clamp: 1
-      j2s7s200_joint_6:
-        p: 100
-        d: 1
-        i: 1
-        i_clamp: 1
-      j2s7s200_joint_7:
-        p: 100
-        d: 1
-        i: 1
-        i_clamp: 1
-  j2s7s200_hand_controller:
-    type: effort_controllers/JointTrajectoryController
+  - name: j2s7s200_gripper_controller
+    action_ns: follow_joint_trajectory
+    default: True
+    type: FollowJointTrajectory
     joints:
-      - j2s7s200_joint_7
       - j2s7s200_joint_finger_1
       - j2s7s200_joint_finger_2
-    gains:
-      j2s7s200_joint_7:
-        p: 100
-        d: 1
-        i: 1
-        i_clamp: 1
-      j2s7s200_joint_finger_1:
-        p: 100
-        d: 1
-        i: 1
-        i_clamp: 1
-      j2s7s200_joint_finger_2:
-        p: 100
-        d: 1
-        i: 1
-        i_clamp: 1
+  - name: j2s7s200_arm_with_torso_controller
+    action_ns: follow_joint_trajectory
+    default: True
+    type: FollowJointTrajectory
+    joints:
+      - torso_slider_joint
+      - j2s7s200_joint_1
+      - j2s7s200_joint_2
+      - j2s7s200_joint_3
+      - j2s7s200_joint_4
+      - j2s7s200_joint_5
+      - j2s7s200_joint_6
+      - j2s7s200_joint_7
