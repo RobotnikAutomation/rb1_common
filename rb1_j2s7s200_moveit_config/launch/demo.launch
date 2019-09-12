@@ -22,14 +22,7 @@
   <include file="$(find rb1_j2s7s200_moveit_config)/launch/planning_context.launch">
     <arg name="load_robot_description" value="true"/>
   </include>
-
-  <!-- joint trajectory action server -->
-  <node name="j2s7s200_joint_trajectory_action_server" pkg="kinova_driver" type="joint_trajectory_action_server" output="screen" respawn="false" args="j2s7s200"/>
-
-  <node name="j2s7s200_gripper_command_action_server" pkg="kinova_driver" type="gripper_command_action_server" output="screen" respawn="false" args="j2s7s200"/>
-
-  <node name="j2s7s200_joint_trajectory_action_server_with_torso" pkg="kinova_driver" type="joint_trajectory_action_server_with_torso" output="screen" respawn="false" args="j2s7s200"/>
-
+  
   <!-- Run the main MoveIt! executable without trajectory execution (we do not have controllers configured by default) -->
   <include file="$(find rb1_j2s7s200_moveit_config)/launch/move_group.launch">
     <arg name="allow_trajectory_execution" value="true"/>

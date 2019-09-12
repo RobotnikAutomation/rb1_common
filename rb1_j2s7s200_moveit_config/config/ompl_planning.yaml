@@ -146,8 +146,8 @@ j2s7s200_arm:
     - LazyPRMstar
     - SPARS
     - SPARStwo
-j2s7s200_gripper:
-  default_planner_config: ""
+j2s7s200_arm_with_torso:
+  default_planner_config: RRTstar
   planner_configs:
     - SBL
     - EST
@@ -172,8 +172,8 @@ j2s7s200_gripper:
     - LazyPRMstar
     - SPARS
     - SPARStwo
-j2s7s200_arm_with_torso:
-  default_planner_config: RRTstar
+j2s7s200_gripper:
+  default_planner_config: ""
   planner_configs:
     - SBL
     - EST

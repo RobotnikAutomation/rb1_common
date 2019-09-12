@@ -47,7 +47,6 @@
     <!--END EFFECTOR: Purpose: Represent information about an end effector.-->
     <end_effector name="j2s7s200_arm_ee" parent_link="j2s7s200_link_7" group="j2s7s200_gripper" />
     <!--PASSIVE JOINT: Purpose: this element is used to mark joints that are not actuated-->
-    <passive_joint name="torso_slider_joint" />
     <passive_joint name="head_pan_joint" />
     <passive_joint name="head_tilt_joint" />
     <passive_joint name="rb1_left_wheel_joint" />
