@@ -73,5 +73,24 @@
 		<axis xyz="0 0 0" />
 	</joint>
 
+	<!-- Front camera scan link -->
+	<link name="$(arg prefix)front_rgbd_camera_depth_optical_scan_frame" />
+
+	<joint name="$(arg prefix)front_rgbd_camera_depth_optical_scan_joint" type="fixed">
+		<origin xyz="0 0 0" rpy="${PI/2} 0 0" />
+		<parent link="$(arg prefix)front_rgbd_camera_depth_optical_frame" />
+		<child link="$(arg prefix)front_rgbd_camera_depth_optical_scan_frame" />
+		<axis xyz="0 0 0" />
+	</joint>
+
+	<!-- Torso camera scan link -->
+	<link name="$(arg prefix)torso_rgbd_camera_depth_optical_scan_frame" />
+
+	<joint name="$(arg prefix)torso_rgbd_camera_depth_optical_scan_joint" type="fixed">
+		<origin xyz="0 0 0" rpy="${PI/2} 0 0" />
+		<parent link="$(arg prefix)torso_rgbd_camera_depth_optical_frame" />
+		<child link="$(arg prefix)torso_rgbd_camera_depth_optical_scan_frame" />
+		<axis xyz="0 0 0" />
+	</joint>
 
 </robot>
