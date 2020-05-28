@@ -35,7 +35,7 @@
         </xacro:if>
         <xacro:unless value="${hq}">
         <geometry>
-        <mesh filename="package://rb1_torso_description/meshes/torsos/rb1v2_superior1.stl"/>
+        <mesh filename="package://rb1_torso_description/meshes/torsos/rb1v2_superior1.dae"/>
         </geometry>
         </xacro:unless>
         <material name="darkgrey">
@@ -72,7 +72,7 @@
         </xacro:if>
         <xacro:unless value="${hq}">
         <geometry>
-        <mesh filename="package://rb1_torso_description/meshes/torsos/rb1v2_guide.stl"/>
+        <mesh filename="package://rb1_torso_description/meshes/torsos/rb1v2_guide.dae"/>
         </geometry>
         </xacro:unless>
         <material name="darkgrey">
@@ -117,7 +117,7 @@
         </xacro:if>
         <xacro:unless value="${hq}">
         <geometry>
-        <mesh filename="package://rb1_torso_description/meshes/torsos/rb1v2_superior2.stl"/>
+        <mesh filename="package://rb1_torso_description/meshes/torsos/rb1v2_superior2.dae"/>
         </geometry>
         </xacro:unless>
         <material name="darkgrey">
@@ -183,7 +183,7 @@
         </xacro:if>
         <xacro:unless value="${hq}">
         <geometry>
-        <mesh filename="package://rb1_torso_description/meshes/torsos/rb1v2_rear_cover.stl"/>
+        <mesh filename="package://rb1_torso_description/meshes/torsos/rb1v2_rear_cover.dae"/>
         </geometry>
         </xacro:unless>
         <material name="darkgrey">
@@ -221,7 +221,7 @@
         </xacro:if>
         <xacro:unless value="${hq}">
         <geometry>
-        <mesh filename="package://rb1_torso_description/meshes/heads/rb1v2_head1.stl"/>
+        <mesh filename="package://rb1_torso_description/meshes/heads/rb1v2_head1.dae"/>
         </geometry>
         </xacro:unless>
         <material name="darkgrey">
@@ -288,7 +288,7 @@
         </xacro:if>
         <xacro:unless value="${hq}">
         <geometry>
-        <mesh filename="package://rb1_torso_description/meshes/heads/rb1v2_head2.stl"/>
+        <mesh filename="package://rb1_torso_description/meshes/heads/rb1v2_head2.dae"/>
         </geometry>
         </xacro:unless>
         <material name="darkgrey">

@@ -147,7 +147,7 @@ j2s7s200_arm:
     - SPARS
     - SPARStwo
 j2s7s200_arm_with_torso:
-  default_planner_config: RRTstar
+  default_planner_config: ""
   planner_configs:
     - SBL
     - EST

@@ -4,11 +4,11 @@ project(rb1_torso_control)
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
-#find_package(catkin REQUIRED COMPONENTS
+find_package(catkin REQUIRED COMPONENTS
 #  robot_state_publisher
 #  ros_control
 #  ros_controllers
-#)
+)
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
